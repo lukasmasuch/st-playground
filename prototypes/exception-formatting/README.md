@@ -3,5 +3,5 @@
 ## Run app
 
 ```bash
-pipenv install & pipenv run app
+pipenv install && pipenv run app
 ```
