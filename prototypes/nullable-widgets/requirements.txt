@@ -1,1 +1,1 @@
-https://github.com/LukasMasuch/st-playground/releases/download/nullable-state-0.0.1/streamlit-1.9.0-py2.py3-none-any.whl
+https://github.com/LukasMasuch/st-playground/releases/download/nullable-widgets-0.0.1/streamlit-1.9.0-py2.py3-none-any.whl
