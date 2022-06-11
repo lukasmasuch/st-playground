@@ -379,13 +379,13 @@ styled_df_7 = df2.loc[:4].style.set_properties(
 
 show_styler(styled_df_7)
 
-colored_header("✅ Builtin Styles: Bar charts 1")
+colored_header("❌ Builtin Styles: Bar charts 1")
 
 styled_df_7 = df2.style.bar(subset=["A", "B"], color="#d65f5f")
 
 show_styler(styled_df_7)
 
-colored_header("✅ Builtin Styles: Bar charts 2")
+colored_header("❌ Builtin Styles: Bar charts 2")
 
 styled_df_7 = (
     df2.style.format("{:.3f}", na_rep="")
