@@ -3,15 +3,13 @@ import time
 import os
 import json
 
-
-
-if "rerun_counter" not in st.session_state:
-    st.session_state["rerun_counter"] = 1
-
 current_counter = st.empty()
 current_session_counters = st.empty()
 
 while True:
+    if "rerun_counter" not in st.session_state:
+        st.session_state["rerun_counter"] = 1
+    
     current_counter.text(f"Rerun counter: " + str(st.session_state["rerun_counter"]))
     session_id = st._get_script_run_ctx().session_id
     
@@ -29,9 +27,6 @@ while True:
 
     current_session_counters.json(session_counters)
 
+    st.session_state["rerun_counter"] += 1
     time.sleep(60)
-    if "rerun_counter" not in st.session_state:
-        st.session_state["rerun_counter"] = 1
-    else:
-        st.session_state["rerun_counter"] += 1
-    
+
