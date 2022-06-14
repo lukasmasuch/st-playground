@@ -1,3 +1,3 @@
 # st-playground
 
-Collection of Streamlit apps to explore new features and replicate issues.
+Collection of Streamlit apps to explore potential features and replicate issues.
