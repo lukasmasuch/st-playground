@@ -4,7 +4,7 @@
 [![Open Development Branch](https://img.shields.io/badge/-feature%20branch-blue?style=flat&logo=git&logoColor=white)](https://github.com/LukasMasuch/streamlit/tree/feature/remove-label)
 [![Compare Development Changes](https://img.shields.io/badge/-compare%20changes-blue?style=flat&logo=github&logoColor=white)](https://github.com/streamlit/streamlit/compare/1.10.0...LukasMasuch:feature/remove-label)
 
-This prototype evaluates removing the label as well as the required spacing for input widgets by setting it to `None`.
+This prototype evaluates removing the input widget label and its spacing by setting it to `None`.
 
 ## Run locally
 
