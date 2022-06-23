@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4f7bbd70af421a833138945410bd100d6f7adcf8ad1c7caf16adb7f48cd8b846"
+            "sha256": "4a0ae821f0dc7de7dbf947c0b3254f04d50c1f8940ca044102a4480294c88911"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -981,11 +981,12 @@
             "version": "==0.3.0"
         },
         "streamlit": {
-            "file": "https://github.com/LukasMasuch/st-playground/releases/download/tab-container-0.0.8/streamlit-1.10.0-py2.py3-none-any.whl",
+            "file": "https://github.com/LukasMasuch/st-playground/releases/download/tab-container-0.0.9/streamlit-1.10.0-py2.py3-none-any.whl",
             "hashes": [
                 "sha256:4bd34928085639efc476968ad03eaa008cf3f223d3f4609b32932671f5541679",
                 "sha256:7ead1e430b599ea435025c493bbae3d06affc60b45a3b12435ae34836c92d95f",
-                "sha256:833ee05bd7217ff8272a40a07417d7fe0cba10984629febe5d4329bc9f3e44e3"
+                "sha256:833ee05bd7217ff8272a40a07417d7fe0cba10984629febe5d4329bc9f3e44e3",
+                "sha256:b394a810df0c248bc172355229e426d1db743a63c10a8bcee9f7d45f403e035e"
             ],
             "index": "pypi",
             "version": "==1.10.0"
