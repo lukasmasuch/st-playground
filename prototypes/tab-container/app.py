@@ -64,7 +64,9 @@ with tabs[1]:
 
 with tabs[2]:
     st.line_chart(get_data())
-    
+
+st.text_input("Foo")
+
 st.markdown("---")
 
 new_tab = st.text_input("Tab label", "New Tab")
