@@ -71,5 +71,3 @@ new_tab = st.text_input("Tab label", "New Tab")
 if st.button("Add tab"):
     st.session_state["tabs"].append(new_tab)
     st.experimental_rerun()
-
-st.expander("foo")
