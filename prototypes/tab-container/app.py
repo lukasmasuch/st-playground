@@ -18,30 +18,6 @@ icon("🗃")
 
 st.title("Tab Container Prototype")
 
-
-with st.expander("Show code"):
-    st.code("""
-import streamlit as st
-import pandas as pd
-import numpy as np
-
-@st.experimental_memo
-def get_data():
-    return pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-
-tab1, tab2, tab3 = st.tabs(["Filter Data", "Raw Data", "📈 Chart"])
-
-with tab1:
-    st.selectbox("Select column", options=["a", "b", "c"])
-    st.slider("Filter range", 0, 100, 1)
-
-with tab2:
-    st.dataframe(get_data())
-
-with tab3:
-    st.line_chart(get_data())
-    """)
-
 def space(num_lines=1):
     """Adds empty lines to the Streamlit app."""
     for _ in range(num_lines):
@@ -65,6 +41,31 @@ with tabs[1]:
 
 with tabs[2]:
     st.line_chart(get_data())
+
+with st.expander("Show code"):
+    st.code("""
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+@st.experimental_memo
+def get_data():
+    return pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+
+tab1, tab2, tab3 = st.tabs(["Filter Data", "Raw Data", "📈 Chart"])
+
+with tab1:
+    st.selectbox("Select column", options=["a", "b", "c"])
+    st.slider("Filter range", 0, 100, 1)
+
+with tab2:
+    st.dataframe(get_data())
+
+with tab3:
+    st.line_chart(get_data())
+    """)
+    
+st.markdown("---")
 
 new_tab = st.text_input("Tab label", "New Tab")
 if st.button("Add tab"):
