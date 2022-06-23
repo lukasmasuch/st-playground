@@ -30,18 +30,6 @@ def get_data():
 if "tabs" not in st.session_state:
     st.session_state["tabs"] = ["Filter Data", "Raw Data", "📈 Chart"]
 
-tabs = st.tabs(st.session_state["tabs"])
-
-with tabs[0]:
-    st.selectbox("Select column", options=["a", "b", "c"])
-    st.slider("Filter range", 0, 100, 1)
-
-with tabs[1]:
-    st.dataframe(get_data(), height=300)
-
-with tabs[2]:
-    st.line_chart(get_data())
-
 with st.expander("Show code"):
     st.code("""
 import streamlit as st
@@ -64,6 +52,18 @@ with tab2:
 with tab3:
     st.line_chart(get_data())
     """)
+
+tabs = st.tabs(st.session_state["tabs"])
+
+with tabs[0]:
+    st.selectbox("Select column", options=["a", "b", "c"])
+    st.slider("Filter range", 0, 100, 1)
+
+with tabs[1]:
+    st.dataframe(get_data(), height=300)
+
+with tabs[2]:
+    st.line_chart(get_data())
     
 st.markdown("---")
 
