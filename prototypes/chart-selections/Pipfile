@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = {file = "https://github.com/LukasMasuch/st-playground/releases/download/chart-selections-0.0.1/streamlit-1.10.0-py2.py3-none-any.whl"}
+pandas = "*"
+numpy = "*"
+vega_datasets = "*"
+altair = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+app = "streamlit run ./app.py"
