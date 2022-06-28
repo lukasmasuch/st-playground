@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4a0ae821f0dc7de7dbf947c0b3254f04d50c1f8940ca044102a4480294c88911"
+            "sha256": "b68e9275f58f1c40bda7b79baf235f0ee0893466b5e7d020b37760f2e24ee977"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -99,11 +99,11 @@
         },
         "bleach": {
             "hashes": [
-                "sha256:08a1fe86d253b5c88c92cc3d810fd8048a16d15762e1e5b74d502256e5926aa1",
-                "sha256:c6d6cc054bdc9c83b48b8083e236e5f00f238428666d2ce2e083eaa5fd568565"
+                "sha256:085f7f33c15bd408dd9b17a4ad77c577db66d76203e5984b1bd59baeee948b2a",
+                "sha256:0d03255c47eb9bd2f26aa9bb7f2107732e7e8fe195ca2f64709fcf3b0a4a085c"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==5.0.0"
+            "version": "==5.0.1"
         },
         "blinker": {
             "hashes": [
@@ -293,11 +293,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:5d26852efe48c0a32b0509ffbc583fda1a2266545a78d104a6f4aff3db17d700",
-                "sha256:c58c8eb8a762858f49e18436ff552e83914778e50e9d2f1660535ffb364552ec"
+                "sha256:637245b8bab2b6502fcbc752cc4b7a6f6243bb02b31c5c26156ad103d3d45670",
+                "sha256:7401a975809ea1fdc658c3aa4f78cc2195a0e019c5cbc4c06122884e9ae80c23"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==4.11.4"
+            "version": "==4.12.0"
         },
         "ipykernel": {
             "hashes": [
@@ -347,11 +347,11 @@
         },
         "jsonschema": {
             "hashes": [
-                "sha256:1c92d2db1900b668201f1797887d66453ab1fbfea51df8e4b46236689c427baf",
-                "sha256:9d6397ba4a6c0bf0300736057f649e3e12ecbc07d3e81a0dacb72de4e9801957"
+                "sha256:5eb781753403847fb320f05e9ab2191725b58c5e7f97f1bed63285ca423159bc",
+                "sha256:ec2802e6a37517f09d47d9ba107947589ae1d25ff557b925d83a321fc2aa5d3b"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==4.6.0"
+            "version": "==4.6.1"
         },
         "jupyter-client": {
             "hashes": [
@@ -634,11 +634,11 @@
         },
         "prompt-toolkit": {
             "hashes": [
-                "sha256:62291dad495e665fca0bda814e342c69952086afb0f4094d0893d357e5c78752",
-                "sha256:bd640f60e8cecd74f0dc249713d433ace2ddc62b65ee07f96d358e0b152b6ea7"
+                "sha256:859b283c50bde45f5f97829f77a4674d1c1fcd88539364f1b28a37805cfd89c0",
+                "sha256:d8916d3f62a7b67ab353a952ce4ced6a1d2587dfe9ef8ebc30dd7c386751f289"
             ],
             "markers": "python_full_version >= '3.6.2'",
-            "version": "==3.0.29"
+            "version": "==3.0.30"
         },
         "protobuf": {
             "hashes": [
@@ -981,11 +981,12 @@
             "version": "==0.3.0"
         },
         "streamlit": {
-            "file": "https://github.com/LukasMasuch/st-playground/releases/download/tab-container-0.0.9/streamlit-1.10.0-py2.py3-none-any.whl",
+            "file": "https://github.com/LukasMasuch/st-playground/releases/download/tab-container-0.1/streamlit-1.10.0-py2.py3-none-any.whl",
             "hashes": [
                 "sha256:4bd34928085639efc476968ad03eaa008cf3f223d3f4609b32932671f5541679",
                 "sha256:7ead1e430b599ea435025c493bbae3d06affc60b45a3b12435ae34836c92d95f",
                 "sha256:833ee05bd7217ff8272a40a07417d7fe0cba10984629febe5d4329bc9f3e44e3",
+                "sha256:992c540d2601739adcb38759002b7583d639cbd5cb9f56c6c2806b626e971607",
                 "sha256:b394a810df0c248bc172355229e426d1db743a63c10a8bcee9f7d45f403e035e"
             ],
             "index": "pypi",
