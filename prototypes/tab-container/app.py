@@ -110,6 +110,7 @@ if  st.session_state["tabs_sidebar"]:
 
     tab2.write("this is tab 2")
 
+space(num_lines=2)
 
 colored_header("Tabs Configruations")
 
