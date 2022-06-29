@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = {file = "https://core-previews.s3-us-west-2.amazonaws.com/hackathon-q1-2022-preview/streamlit-1.5.0-py2.py3-none-any.whl"}
+pandas = "*"
+numpy = "*"
+faker = "*"
+matplotlib = "*"
+protobuf = "==3.20.1"
+click = "==8.0.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+app = "streamlit run ./app.py"
