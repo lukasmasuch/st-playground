@@ -55,9 +55,11 @@ icon("📊")
 
 st.title("Charts with Streamlit Theme")
 
-SELECTED_THEME = None
-if st.checkbox("Use Streamlit Theme"):
+
+if st.checkbox("Use Streamlit Theme", value=True):
     SELECTED_THEME = "streamlit"
+else:
+    SELECTED_THEME = None
 
 colored_header("st.line_chart")
 
