@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4f22156f47de127167f619e8f9154ec8b8e3b7b6450a0b5d55259e84987f2d81"
+            "sha256": "6705726ddb3fc2e923eeb037fefe4c77eea57e5bb0a52e2e4514e2e0f501c4f6"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1015,8 +1015,9 @@
             "version": "==0.3.0"
         },
         "streamlit": {
-            "file": "https://github.com/LukasMasuch/st-playground/releases/download/themed-charts-0.0.2/streamlit-1.10.0-py2.py3-none-any.whl",
+            "file": "https://github.com/LukasMasuch/st-playground/releases/download/themed-charts-0.0.3/streamlit-1.10.0-py2.py3-none-any.whl",
             "hashes": [
+                "sha256:3eb78535dfa5167668bd68441ce77443f710e6a04d2e5bf2f327564b419a5573",
                 "sha256:590e49c73722c344fdd9a7fddedea41613f05dfa71466605dcbedbcf5ba94ad3",
                 "sha256:9743bf3b342044e25a1cbb512e31d40b600d0fa3cb3c3f21039d92e489151f3b"
             ],

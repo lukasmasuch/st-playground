@@ -6,6 +6,8 @@ import streamlit as st
 import altair as alt
 from vega_datasets import data
 
+from typing import Optional
+
 st.set_page_config(page_title="Streamlit Theme for Charts", page_icon="📊")
 
 
@@ -55,11 +57,9 @@ icon("📊")
 
 st.title("Charts with Streamlit Theme")
 
-
+SELECTED_THEME: Optional[str] = None
 if st.checkbox("Use Streamlit Theme", value=True):
     SELECTED_THEME = "streamlit"
-else:
-    SELECTED_THEME = None
 
 colored_header("st.line_chart")
 
@@ -72,7 +72,7 @@ st.line_chart(chart_data)
     )
 
 chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-st.line_chart(chart_data)
+st._arrow_line_chart(chart_data, theme=SELECTED_THEME)
 
 colored_header("st.area_chart")
 with st.expander("Show code"):
@@ -84,7 +84,7 @@ st.area_chart(chart_data)
     )
 
 chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-st.area_chart(chart_data)
+st._arrow_area_chart(chart_data, theme=SELECTED_THEME)
 
 colored_header("st.bar_chart")
 with st.expander("Show code"):
@@ -96,8 +96,7 @@ st.bar_chart(chart_data)
     )
 
 chart_data = pd.DataFrame(np.random.randn(50, 3), columns=["a", "b", "c"])
-st.bar_chart(chart_data)
-
+st._arrow_bar_chart(chart_data, theme=SELECTED_THEME)
 
 colored_header("st.altair_chart - Scatterplot")
 with st.expander("Show code"):
@@ -276,45 +275,6 @@ chart = alt.Chart(data.movies.url, height=400).mark_rect().encode(
     alt.Y('Rotten_Tomatoes_Rating:Q', bin=alt.Bin(maxbins=40)),
     alt.Color('count():Q')
 ).interactive()
-
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
-
-colored_header("st.altair_chart - Geoshape Plot")
-
-with st.expander("Show code"):
-    st.code(
-        """
-import streamlit as st
-import altair as alt
-from vega_datasets import data
-
-chart = alt.Chart(alt.topo_feature(data.us_10m.url, 'counties')).mark_geoshape().encode(
-    color='rate:Q'
-).transform_lookup(
-    lookup='id',
-    from_=alt.LookupData(data.unemployment.url, 'id', ['rate'])
-).project(
-    type='albersUsa'
-).properties(
-    height=600,
-    title="Unemployment rate per county"
-)
-
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
-"""
-    )
-
-chart = alt.Chart(alt.topo_feature(data.us_10m.url, 'counties')).mark_geoshape().encode(
-    color='rate:Q'
-).transform_lookup(
-    lookup='id',
-    from_=alt.LookupData(data.unemployment.url, 'id', ['rate'])
-).project(
-    type='albersUsa'
-).properties(
-    height=600,
-    title="Unemployment rate per county"
-)
 
 st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
 
@@ -611,6 +571,45 @@ bars = (
 )
 # autosize=alt.AutoSizeParams(contains="padding" ,type="pad", resize=True))
 st._arrow_altair_chart(alt.vconcat(points, bars), theme=SELECTED_THEME, use_container_width=True)
+
+colored_header("st.altair_chart - Geoshape Plot")
+
+with st.expander("Show code"):
+    st.code(
+        """
+import streamlit as st
+import altair as alt
+from vega_datasets import data
+
+chart = alt.Chart(alt.topo_feature(data.us_10m.url, 'counties')).mark_geoshape().encode(
+    color='rate:Q'
+).transform_lookup(
+    lookup='id',
+    from_=alt.LookupData(data.unemployment.url, 'id', ['rate'])
+).project(
+    type='albersUsa'
+).properties(
+    height=600,
+    title="Unemployment rate per county"
+)
+
+st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+"""
+    )
+
+chart = alt.Chart(alt.topo_feature(data.us_10m.url, 'counties')).mark_geoshape().encode(
+    color='rate:Q'
+).transform_lookup(
+    lookup='id',
+    from_=alt.LookupData(data.unemployment.url, 'id', ['rate'])
+).project(
+    type='albersUsa'
+).properties(
+    height=600,
+    title="Unemployment rate per county"
+)
+
+st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
 
 colored_header("st.vega_lite_chart")
 with st.expander("Show code"):
