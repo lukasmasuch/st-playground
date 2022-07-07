@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 streamlit = {file = "https://github.com/LukasMasuch/st-playground/releases/download/partial-reruns-0.0.1/streamlit-1.10.0-py2.py3-none-any.whl"}
+regex = "*"
 
 [dev-packages]
 
