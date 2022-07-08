@@ -57,9 +57,10 @@ icon("📊")
 
 st.title("Charts with Streamlit Theme")
 
-SELECTED_THEME: Optional[str] = None
 if st.checkbox("Use Streamlit Theme", value=True):
-    SELECTED_THEME = "streamlit"
+    alt.themes.enable("streamlit")
+else:
+    alt.themes.enable("default")
 
 colored_header("st.line_chart")
 
@@ -72,7 +73,7 @@ st.line_chart(chart_data)
     )
 
 chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-st._arrow_line_chart(chart_data, theme=SELECTED_THEME)
+st._arrow_line_chart(chart_data)
 
 colored_header("st.area_chart")
 with st.expander("Show code"):
@@ -84,7 +85,7 @@ st.area_chart(chart_data)
     )
 
 chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-st._arrow_area_chart(chart_data, theme=SELECTED_THEME)
+st._arrow_area_chart(chart_data)
 
 colored_header("st.bar_chart")
 with st.expander("Show code"):
@@ -96,7 +97,7 @@ st.bar_chart(chart_data)
     )
 
 chart_data = pd.DataFrame(np.random.randn(50, 3), columns=["a", "b", "c"])
-st._arrow_bar_chart(chart_data, theme=SELECTED_THEME)
+st._arrow_bar_chart(chart_data)
 
 colored_header("st.altair_chart - Scatterplot")
 with st.expander("Show code"):
@@ -117,7 +118,7 @@ chart = (
     .interactive()
 )
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -134,7 +135,7 @@ chart = (
     .interactive()
 )
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Histogram")
 
@@ -150,7 +151,7 @@ chart = alt.Chart(data.movies.url).mark_bar().encode(
     y='count()',
 )
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -159,7 +160,7 @@ chart = alt.Chart(data.movies.url).mark_bar().encode(
     y='count()',
 )
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 
 colored_header("st.altair_chart - Bar Chart")
@@ -176,7 +177,7 @@ chart = alt.Chart( data.barley()).mark_bar().encode(
     y=alt.Y('site:N', sort='-x')
 )
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -185,7 +186,7 @@ chart = alt.Chart( data.barley()).mark_bar().encode(
     y=alt.Y('site:N', sort='-x')
 )
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Stacked Bar Chart")
 
@@ -207,7 +208,7 @@ chart = alt.Chart(data.barley()).mark_bar().encode(
     )
 )
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -222,7 +223,7 @@ chart = alt.Chart(data.barley()).mark_bar().encode(
     )
 ).interactive()
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 
 colored_header("st.altair_chart - Binned Scatterplot")
@@ -240,7 +241,7 @@ chart = alt.Chart(data.movies.url).mark_circle().encode(
     size='count()'
 ).properties(height=400).interactive()
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -249,7 +250,7 @@ chart = alt.Chart(data.movies.url).mark_circle().encode(
     alt.Y('Rotten_Tomatoes_Rating:Q', bin=True),
     size='count()'
 ).properties(height=400).interactive()
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Binned Heatmap")
 
@@ -266,7 +267,7 @@ chart = alt.Chart(data.movies.url, height=400).mark_rect().encode(
     alt.Color('count():Q')
 ).interactive()
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -276,7 +277,7 @@ chart = alt.Chart(data.movies.url, height=400).mark_rect().encode(
     alt.Color('count():Q')
 ).interactive()
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Layered Histogram")
 
@@ -309,7 +310,7 @@ chart = alt.Chart(source).transform_fold(
     alt.Color('Experiment:N')
 ).interactive()
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -335,7 +336,7 @@ chart = alt.Chart(source).transform_fold(
     alt.Color('Experiment:N')
 ).interactive()
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Pie Chart")
 
@@ -350,7 +351,7 @@ chart = alt.Chart(pd.DataFrame({"category": [1, 2, 3, 4, 5, 6], "value": [4, 6, 
     color=alt.Color(field="category", type="nominal"),
 )
 
-st._arrow_altair_chart(chart, theme="streamlit")
+st._arrow_altair_chart(chart)
 """
     )
 
@@ -359,7 +360,7 @@ chart = alt.Chart(pd.DataFrame({"category": [1, 2, 3, 4, 5, 6], "value": [4, 6, 
     color=alt.Color(field="category", type="nominal"),
 )
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME)
+st._arrow_altair_chart(chart)
 
 colored_header("st.altair_chart - Grouped Bar Chart")
 
@@ -377,7 +378,7 @@ chart = alt.Chart(data.barley()).mark_bar().encode(
     column='site:N'
 ).interactive()
 
-st._arrow_altair_chart(chart, theme="streamlit")
+st._arrow_altair_chart(chart)
 """
     )
 
@@ -388,7 +389,7 @@ chart = alt.Chart(data.barley()).mark_bar().encode(
     column='site:N'
 ).interactive()
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME)
+st._arrow_altair_chart(chart)
 
 colored_header("st.altair_chart - Strip Plot")
 
@@ -404,7 +405,7 @@ chart = alt.Chart(data.cars()).mark_tick().encode(
     y='Cylinders:O'
 ).interactive()
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -413,7 +414,7 @@ chart = alt.Chart(data.cars()).mark_tick().encode(
     y='Cylinders:O'
 ).interactive()
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Line Chart")
 
@@ -432,7 +433,7 @@ chart = alt.Chart(data.population()).mark_line().encode(
     )
 )
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -444,7 +445,7 @@ chart = alt.Chart(data.population()).mark_line().encode(
     )
 )
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Multi-series Line Chart")
 
@@ -462,7 +463,7 @@ chart = alt.Chart(data.stocks()).mark_line().encode(
     strokeDash='symbol',
 ).interactive()
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -473,7 +474,7 @@ chart = alt.Chart(data.stocks()).mark_line().encode(
     strokeDash='symbol',
 ).interactive()
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.altair_chart - Layered Line Chart")
 with st.expander("Show code"):
@@ -495,7 +496,7 @@ band = (
     )
 )
 
-st._arrow_altair_chart(band + line, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(band + line, use_container_width=True)
 """
     )
 
@@ -512,7 +513,7 @@ band = (
     )
 )
 
-st._arrow_altair_chart(band + line, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(band + line, use_container_width=True)
 
 colored_header("st.altair_chart - Combined Chart")
 with st.expander("Show code"):
@@ -544,7 +545,7 @@ bars = (
     .transform_filter(brush)
 )
 
-st._arrow_altair_chart(points & bars, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(points & bars, use_container_width=True)
 """
     )
 
@@ -570,7 +571,7 @@ bars = (
     .transform_filter(brush)
 )
 # autosize=alt.AutoSizeParams(contains="padding" ,type="pad", resize=True))
-st._arrow_altair_chart(alt.vconcat(points, bars), theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(alt.vconcat(points, bars), use_container_width=True)
 
 colored_header("st.altair_chart - Geoshape Plot")
 
@@ -593,7 +594,7 @@ chart = alt.Chart(alt.topo_feature(data.us_10m.url, 'counties')).mark_geoshape()
     title="Unemployment rate per county"
 )
 
-st._arrow_altair_chart(chart, theme="streamlit", use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 """
     )
 
@@ -609,7 +610,7 @@ chart = alt.Chart(alt.topo_feature(data.us_10m.url, 'counties')).mark_geoshape()
     title="Unemployment rate per county"
 )
 
-st._arrow_altair_chart(chart, theme=SELECTED_THEME, use_container_width=True)
+st._arrow_altair_chart(chart, use_container_width=True)
 
 colored_header("st.vega_lite_chart")
 with st.expander("Show code"):
@@ -626,8 +627,7 @@ st._arrow_vega_lite_chart(
             "y": {"field": "b", "type": "quantitative"},
             "size": {"field": "c", "type": "quantitative"},
         },
-    },
-    theme="streamlit",
+    }
     use_container_width=True,
 )
 """
@@ -645,6 +645,5 @@ st._arrow_vega_lite_chart(
             "size": {"field": "c", "type": "quantitative"},
         },
     },
-    theme=SELECTED_THEME,
     use_container_width=True,
 )
