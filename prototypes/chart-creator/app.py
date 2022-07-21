@@ -93,15 +93,36 @@ datasets = [
     if dataset_name not in IGNORLIST
 ]
 
-
+upload_own = "Upload your own dataset"
+stocks_wide = "stocks - wide-format"
+dataset_options = [upload_own, stocks_wide]
+dataset_options.extend(datasets)
 selected_dataset_name = st.selectbox(
-    "Select a dataset", options=datasets, index=datasets.index("cars")
+    "Select a dataset",
+    options=dataset_options,
+    index=dataset_options.index(str(stocks_wide)),
 )
 
-selected_dataset, selected_dataset_df = get_dataset(selected_dataset_name)
+selected_dataset_df = pd.DataFrame()
 
-if selected_dataset.description:
-    st.caption(selected_dataset.description)
+if selected_dataset_name == upload_own:
+    uploaded_file = st.file_uploader("Load a CSV file", type="csv")
+    if uploaded_file:
+        selected_dataset_df = pd.read_csv(uploaded_file, sep=None)
+elif selected_dataset_name == stocks_wide:
+    selected_dataset, selected_dataset_df = get_dataset("stocks")
+
+    if selected_dataset.description:
+        st.caption(selected_dataset.description)
+
+    selected_dataset_df = selected_dataset_df.pivot(
+        index="date", columns="symbol", values="price"
+    )
+else:
+    selected_dataset, selected_dataset_df = get_dataset(selected_dataset_name)
+
+    if selected_dataset.description:
+        st.caption(selected_dataset.description)
 
 col1, col2 = st.columns(2)
 
