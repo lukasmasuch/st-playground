@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = {file = "https://core-previews.s3-us-west-2.amazonaws.com/pr-5002/streamlit-1.11.0-py2.py3-none-any.whl"}
+pandas = "*"
+numpy = "*"
+vega_datasets = "*"
+altair = "*"
+streamlit-pandas-profiling = "*"
+
+[dev-packages]
+black = "*"
+mypy = "*"
+flake8 = "*"
+isort = "*"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+app = "streamlit run ./app.py"
