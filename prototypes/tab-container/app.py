@@ -80,27 +80,29 @@ def get_data():
 tab1, tab2, tab3 = st.tabs(["Filter Data", "Raw Data", "📈 Chart"])
 
 with tab1:
-    st.selectbox("Select column", options=["a", "b", "c"])
-    st.slider("Filter range", 0, 100, 1)
+    col = st.selectbox("Select column", options=["a", "b", "c"])
+    filter = st.slider("Filter range", -2.5, 2.5, (-2.0, 2.0), step=0.01)
+    filter_query = f"{filter[0]} < {col} < {filter[1]}"
 
 with tab2:
-    st.dataframe(get_data())
+    st.dataframe(get_data().query(filter_query))
 
 with tab3:
-    st.line_chart(get_data())
+    st.line_chart(get_data().query(filter_query))
     """)
 
 tabs = st.tabs(st.session_state["tabs"])
 
 with tabs[0]:
-    st.selectbox("Select column", options=["a", "b", "c"])
-    st.slider("Filter range", 0, 100, 1)
+    col = st.selectbox("Select column", options=["a", "b", "c"])
+    filter = st.slider("Filter range", -2.5, 2.5, (-2.0, 2.0), step=0.01)
+    filter_query = f"{filter[0]} < {col} < {filter[1]}"
 
 with tabs[1]:
-    st.dataframe(get_data(), height=300)
+    st.dataframe(get_data().query(filter_query), height=300)
 
 with tabs[2]:
-    st.line_chart(get_data())
+    st.line_chart(get_data().query(filter_query))
 
 if  st.session_state["tabs_sidebar"]:
     tab1, tab2 = st.sidebar.tabs(["Tab 1", "Tab 2"])
