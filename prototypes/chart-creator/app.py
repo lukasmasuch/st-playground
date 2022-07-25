@@ -107,12 +107,12 @@ selected_dataset_df = pd.DataFrame()
 selected_dataset_code = ""
 
 if selected_dataset_name == upload_own:
-    selected_dataset_code = '    return pd.read_csv("PATH_TO_YOUR_CSV", sep=None)'
+    selected_dataset_code = 'return pd.read_csv("PATH_TO_YOUR_CSV", sep=None)'
     uploaded_file = st.file_uploader("Load a CSV file", type="csv")
     if uploaded_file:
         selected_dataset_df = pd.read_csv(uploaded_file, sep=None)
 elif selected_dataset_name == stocks_wide:
-    selected_dataset_code = '    dataset_df = data.stocks()\n    return dataset_df.pivot(index="date", columns="symbol", values="price")'
+    selected_dataset_code = 'dataset_df = data.stocks()\n    return dataset_df.pivot(index="date", columns="symbol", values="price")'
     selected_dataset, selected_dataset_df = get_dataset("stocks")
 
     if selected_dataset.description:
@@ -122,7 +122,7 @@ elif selected_dataset_name == stocks_wide:
         index="date", columns="symbol", values="price"
     )
 else:
-    selected_dataset_code = f"    return data.{selected_dataset_name}()"
+    selected_dataset_code = f"return data.{selected_dataset_name}()"
     selected_dataset, selected_dataset_df = get_dataset(selected_dataset_name)
 
     if selected_dataset.description:
