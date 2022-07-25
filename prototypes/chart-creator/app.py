@@ -104,12 +104,15 @@ selected_dataset_name = st.selectbox(
 )
 
 selected_dataset_df = pd.DataFrame()
+selected_dataset_code = ""
 
 if selected_dataset_name == upload_own:
+    selected_dataset_code = '    return pd.read_csv("PATH_TO_YOUR_CSV", sep=None)'
     uploaded_file = st.file_uploader("Load a CSV file", type="csv")
     if uploaded_file:
         selected_dataset_df = pd.read_csv(uploaded_file, sep=None)
 elif selected_dataset_name == stocks_wide:
+    selected_dataset_code = '    dataset_df = data.stocks()\n    return dataset_df.pivot(index="date", columns="symbol", values="price")'
     selected_dataset, selected_dataset_df = get_dataset("stocks")
 
     if selected_dataset.description:
@@ -119,6 +122,7 @@ elif selected_dataset_name == stocks_wide:
         index="date", columns="symbol", values="price"
     )
 else:
+    selected_dataset_code = f"    return data.{selected_dataset_name}()"
     selected_dataset, selected_dataset_df = get_dataset(selected_dataset_name)
 
     if selected_dataset.description:
@@ -349,12 +353,16 @@ elif selected_y:
 st.code(
     f"""
 import streamlit as st
+import pandas as pd
 from vega_datasets import data
 
-dataset_df = data.{selected_dataset_name}()
+@st.experimental_memo
+def get_dataset() -> pd.DataFrame:
+    {selected_dataset_code}
+
 {data_type_transformations}{melt_df_code}{pivot_df_code}
 st.{selected_chart}(
-    dataset_df,{x_parameter}{y_parameter}
+    get_dataset(),{x_parameter}{y_parameter}
     use_container_width=True
 )
 """
