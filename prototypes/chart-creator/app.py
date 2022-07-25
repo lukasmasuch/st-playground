@@ -361,7 +361,6 @@ def get_dataset() -> pd.DataFrame:
     {selected_dataset_code}
 
 dataset_df = get_dataset()
-
 {data_type_transformations}{melt_df_code}{pivot_df_code}
 st.{selected_chart}(
     dataset_df,{x_parameter}{y_parameter}
