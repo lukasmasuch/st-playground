@@ -292,7 +292,6 @@ does not support data aggregation, multiple values will result in a MultiIndex i
 
         pivot_df_code = f"""
 dataset_df = dataset_df.pivot({index_column_code}{column_code}{values_code}
-    values={values if values else None}
 )
 """
         st.dataframe(selected_dataset_df)
