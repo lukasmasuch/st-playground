@@ -336,10 +336,13 @@ with col3:
         "Select chart type", options=["line_chart", "area_chart", "bar_chart"]
     )
 
-# st.expander("Adapt Data Types"):
-
-chart_command = getattr(st, selected_chart)
-chart_command(selected_dataset_df, x=selected_x, y=selected_y, use_container_width=True)
+try:
+    chart_command = getattr(st, selected_chart)
+    chart_command(
+        selected_dataset_df, x=selected_x, y=selected_y, use_container_width=True
+    )
+except st.StreamlitAPIException as e:
+    st.error(e)
 
 colored_header("🪄 Generated Code")
 
