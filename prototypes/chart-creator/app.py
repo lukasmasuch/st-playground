@@ -360,9 +360,11 @@ from vega_datasets import data
 def get_dataset() -> pd.DataFrame:
     {selected_dataset_code}
 
+dataset_df = get_dataset()
+
 {data_type_transformations}{melt_df_code}{pivot_df_code}
 st.{selected_chart}(
-    get_dataset(),{x_parameter}{y_parameter}
+    dataset_df,{x_parameter}{y_parameter}
     use_container_width=True
 )
 """
