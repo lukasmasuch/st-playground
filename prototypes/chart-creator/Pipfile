@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-streamlit = {file = "https://core-previews.s3-us-west-2.amazonaws.com/pr-5002/streamlit-1.11.0-py2.py3-none-any.whl"}
+streamlit = {file = "https://github.com/LukasMasuch/st-playground/releases/download/x-y-param-for-charts-0.0.1/streamlit-1.11.0-py2.py3-none-any.whl"}
 pandas = "*"
 numpy = "*"
 vega_datasets = "*"
