@@ -21,3 +21,6 @@ with tab2:
     st.video("https://www.youtube.com/watch?v=R2nr1uZ8ffc")
 
 st.markdown("test")
+
+if st.checkbox("Add more content"):
+    st.video("https://www.youtube.com/watch?v=R2nr1uZ8ffc")
