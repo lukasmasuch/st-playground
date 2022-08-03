@@ -5,8 +5,14 @@ name = "pypi"
 
 [packages]
 streamlit = {file = "https://github.com/LukasMasuch/st-playground/releases/download/metatags-prototype-0.0.1/streamlit-1.11.1-py2.py3-none-any.whl"}
+pandas = "*"
+numpy = "*"
 
 [dev-packages]
+black = "*"
+mypy = "*"
+flake8 = "*"
+isort = "*"
 
 [requires]
 python_version = "3.9"
