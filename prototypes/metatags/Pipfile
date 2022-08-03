@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-streamlit = {file = "https://github.com/LukasMasuch/st-playground/releases/download/metatags-prototype-0.0.2/streamlit-1.11.1-py2.py3-none-any.whl"}
+streamlit = {file = "https://github.com/LukasMasuch/st-playground/releases/download/metatags-prototype-0.0.3/streamlit-1.11.1-py2.py3-none-any.whl"}
 pandas = "*"
 numpy = "*"
 
