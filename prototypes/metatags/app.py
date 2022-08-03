@@ -16,5 +16,5 @@ st.markdown(
 
 st.markdown(
     "You can try out how this apps social preview looks like [here](https://socialsharepreview.com/). "
-    + "NOTE: This currently only works with the [internal app URL](./~/+/) on Streamlit Cloud. Please attach `/~/+/` to the URL to see the preview."
+    + "NOTE: This currently only works with the [internal app URL](.) on Streamlit Cloud. Please attach `/~/+/` to the URL to see the preview."
 )
