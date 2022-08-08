@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = "*"
+pandas = "*"
+numpy = "*"
+snowflake-snowpark-python = "*"
+snowflake-connector-python = "*"
+
+[dev-packages]
+black = "*"
+mypy = "*"
+flake8 = "*"
+isort = "*"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+app = "streamlit run ./app.py"
