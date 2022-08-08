@@ -20,7 +20,7 @@ def load_data():
     table = table.limit(10)
 
     # Collect the results. This will run the query and download the data.
-    table = table.collect()
+    table = table.to_pandas()
     return table
 
 
