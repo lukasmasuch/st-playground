@@ -15,6 +15,7 @@ black = "*"
 mypy = "*"
 flake8 = "*"
 isort = "*"
+watchdog = "*"
 
 [requires]
 python_version = "3.8"
