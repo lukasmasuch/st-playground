@@ -1,6 +1,8 @@
 from typing import Tuple, Any, Optional, List, Union
 import itertools
 
+import pandas_profiling
+from streamlit_pandas_profiling import st_profile_report
 import pandas as pd
 import streamlit as st
 from vega_datasets import data
@@ -62,8 +64,7 @@ def get_dataset(dataset_name: str) -> Tuple[Any, pd.DataFrame]:
 
 
 @st.experimental_memo
-def get_profiling_report(dataset_name: str):
-    _, dataset_df = get_dataset(dataset_name)
+def get_profiling_report(dataset_df: pd.DataFrame):
     return dataset_df.profile_report()
 
 
@@ -305,9 +306,8 @@ with st.expander("Dataset Profile"):
 
     if profiling_placeholder.button("🔬 Run Profiling"):
         profiling_placeholder.empty()
-        from streamlit_pandas_profiling import st_profile_report
 
-        st_profile_report(get_profiling_report(selected_dataset_name))
+        st_profile_report(get_profiling_report(selected_dataset_df))
 
 st.dataframe(selected_dataset_df.head(min(len(selected_dataset_df), 1000)))
 
