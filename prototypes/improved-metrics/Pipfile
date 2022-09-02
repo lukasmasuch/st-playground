@@ -8,6 +8,10 @@ streamlit = "*"
 pandas = "*"
 numpy = "*"
 matplotlib = "*"
+streamlit-aggrid = "*"
+plotly = "*"
+matplotlib = "*"
+bokeh = "*"
 
 [dev-packages]
 
