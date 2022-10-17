@@ -19,7 +19,7 @@ body:
 - type: textarea
   attributes:
     label: Minimal Reproducible Example 
-    description: If applicable, please provide code that we can easily understand and use to reproduce the problem. 
+    description: If applicable, please provide [complete code example](https://stackoverflow.com/help/minimal-reproducible-example) that we can easily understand and use to reproduce the problem. 
     placeholder: |
         import streamlit as st
   validations:
