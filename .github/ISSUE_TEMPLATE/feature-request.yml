@@ -54,8 +54,9 @@ body:
     label: Is this a regression?
     description: That is, did this use to work the way you expected in the past?
     options:
-      - "No"
       - "Yes"
+      - "No"
+      - "I don't know"
   validations:
     required: true
 - type: textarea
