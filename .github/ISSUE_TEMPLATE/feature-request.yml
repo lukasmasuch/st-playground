@@ -1,7 +1,6 @@
 
 name: 🐛 Bug Report
 description: Submit a bug report to help us improve Streamlit.
-title: ""
 labels: [bug, needs triage]
 body:
 - type: checkboxes
@@ -55,8 +54,8 @@ body:
     label: Is this a regression?
     description: That is, did this use to work the way you expected in the past?
     options:
-      - No
-      - Yes
+      - "No"
+      - "Yes"
   validations:
     required: true
 - type: Debug info
