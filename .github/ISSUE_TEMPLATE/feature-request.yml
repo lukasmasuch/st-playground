@@ -27,9 +27,9 @@ body:
         import streamlit as st
         
         st.write("Hello World")
+  render: python
   validations:
     required: false
-    render: python
 - type: textarea
   attributes:
     label: Steps To Reproduce
