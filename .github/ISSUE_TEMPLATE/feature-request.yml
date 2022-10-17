@@ -113,7 +113,6 @@ body:
     multiple: true
     options:
       - Chrome
-      - Edge
       - Safari
       - Firefox
       - Edge
