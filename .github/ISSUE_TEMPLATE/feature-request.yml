@@ -63,12 +63,12 @@ body:
   attributes:
     label: Debug info
     description: |
-      examples:
-        - Streamlit version: 1.13
-        - Python version: 3.9
-        - Virtual environment: Pipenv
-        - OS: MacOs 12.6
-        - Browser: Chrome 
+      Example:
+        - **Streamlit version**: 1.13.0
+        - **Python version**: 3.9
+        - **Virtual environment**: Pipenv
+        - **OS**: MacOs 12.6
+        - **Browser**: Chrome 
     value: |
         - Streamlit version: (get it with `$ streamlit version`)
         - Python version: (get it with `$ python --version`)
