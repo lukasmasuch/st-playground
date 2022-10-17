@@ -58,9 +58,9 @@ body:
       - "Yes"
   validations:
     required: true
-- type: Debug info
+- type: textarea
   attributes:
-    label: Environment
+    label: Debug info
     description: |
       examples:
         - Streamlit version: 1.13
