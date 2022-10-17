@@ -22,6 +22,8 @@ body:
     description: If applicable, please provide [complete code example](https://stackoverflow.com/help/minimal-reproducible-example) that we can easily understand and use to reproduce the problem. 
     placeholder: |
         import streamlit as st
+        
+        st.write("Hello World")
   validations:
     required: false
     render: python
