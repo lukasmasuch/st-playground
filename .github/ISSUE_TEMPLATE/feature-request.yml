@@ -80,7 +80,7 @@ body:
     required: false
 - type: textarea
   attributes:
-    label: Additional information
+    label: Additional Information
     description: |
       Links? References? Anything that will give us more context about the issue you are encountering! 
       For example, did this bug come from https://discuss.streamlit.io or another site? Link the original source here!
