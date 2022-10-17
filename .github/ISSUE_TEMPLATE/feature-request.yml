@@ -18,8 +18,11 @@ body:
     required: true
 - type: textarea
   attributes:
-    label: Minimal Reproducible Example 
-    description: If applicable, please provide a [complete code example](https://stackoverflow.com/help/minimal-reproducible-example) that reproduces the problem you ran into.
+    label: Reproducible Code Example 
+    description: |
+        If applicable, please provide a [self-contained minimal code example](https://stackoverflow.com/help/minimal-reproducible-example) that reproduces the problem you ran into.
+        
+        If we can copy it, run it, and see it right away, there's a much higher chance we will be able to help you.
     placeholder: |
         import streamlit as st
         
@@ -76,9 +79,47 @@ body:
         - Streamlit version: (get it with `$ streamlit version`)
         - Python version: (get it with `$ python --version`)
         - Virtual environment: (Conda? PipEnv? PyEnv? Pex?)
-        - OS:
         - Browser:
     render: markdown
+  validations:
+    required: false
+- type: dropdown
+  id: os
+  attributes:
+    label: Operating System
+    description: What operating system is your Streamlit app running on?
+    multiple: true
+    options:
+      - Linux
+      - Windows
+      - macOS
+      - Other
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Operating System Details
+    description: You can add more details about your operating system here, in particular if you chose "Other".
+- type: input
+  attributes:
+    label: Streamlit Version
+    description: |
+      What Streamlit version are you using? You can find it via:
+
+      ```bash
+      streamlit version
+      ```
+  validations:
+    required: false
+- type: input
+  attributes:
+    label: Python Version
+    description: |
+      What Python version are you using? You can find the Python version via:
+
+      ```bash
+      python --version
+      ```
   validations:
     required: false
 - type: textarea
