@@ -5,10 +5,15 @@ labels: [bug, needs triage]
 body:
 - type: checkboxes
   attributes:
-    label: Is there an existing issue for this?
-    description: Please search [here](https://github.com/streamlit/streamlit/issues) to see if an issue already exists for the bug you encountered.
+    label: Checklist
+    description:
+        Please confirm and check all the following options.
     options:
-    - label: I have searched the existing issues
+    - label: I added a very descriptive title to this issue.
+      required: true
+    - label: I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.
+      required: true
+    - label: I have searched the [Streamlit documentation](https://docs.streamlit.io/).
       required: true
 - type: textarea
   attributes:
