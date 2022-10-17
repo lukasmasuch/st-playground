@@ -19,7 +19,7 @@ body:
 - type: textarea
   attributes:
     label: Minimal Reproducible Example 
-    description: If applicable, please provide [complete code example](https://stackoverflow.com/help/minimal-reproducible-example) that we can easily understand and use to reproduce the problem. 
+    description: If applicable, please provide a [complete code example](https://stackoverflow.com/help/minimal-reproducible-example) that reproduces the problem you ran into.
     placeholder: |
         import streamlit as st
         
@@ -48,7 +48,8 @@ body:
     label: Current Behavior
     description:  |
         Explain the buggy behavior you experience when you go through the steps above.
-        If applicable, add screenshots to help explain your problem.
+        If you have error messages, stack traces please provide them here as well.
+        If applicable, add screenshots to help explain your problem. 
   validations:
     required: false
 - type: dropdown
