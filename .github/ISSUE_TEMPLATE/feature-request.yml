@@ -72,78 +72,23 @@ body:
       - "I don't know"
   validations:
     required: false
-- type: dropdown
-  id: os
+- type: textarea
   attributes:
-    label: Operating System
+    label: Debug info
     description: |
-        What operating system is your Streamlit app running on?
-        
-        _You can add more details in the `Additional Information` section below._
-    multiple: true
-    options:
-      - Linux
-      - Windows
-      - macOS
-      - Other
-  validations:
-    required: false
-- type: input
-  attributes:
-    label: Streamlit Version
-    description: |
-      What Streamlit version are you using? You can find it via:
-
-      ```bash
-      streamlit version
-      ```
-  validations:
-    required: false
-- type: input
-  attributes:
-    label: Python Version
-    description: |
-      What Python version are you using? You can find the Python version via:
-
-      ```bash
-      python --version
-      ```
-  validations:
-    required: false
-- type: dropdown
-  attributes:
-    label: Browser
-    description: |
-        What browser do you use to access the Streamlit app?
-        
-        _You can add more details in the `Additional Information` section below._
-    multiple: true
-    options:
-      - Chrome
-      - Safari
-      - Firefox
-      - Edge
-      - Opera
-      - Other
-  validations:
-    required: false
-- type: dropdown
-  attributes:
-    label: Virtual Environment
-    description: |
-        Are you using a virtual environment to run the Streamlit app?
-        
-        _You can add more details in the `Additional Information` section below._
-    multiple: true
-    options:
-      - Conda
-      - Pipenv
-      - Venv
-      - Poetry
-      - Virtualenv
-      - Pyenv
-      - Pex
-      - Other
+      Example:
+        - **Streamlit version**: 1.13.0
+        - **Python version**: 3.9
+        - **Virtual environment**: Pipenv
+        - **OS**: MacOs 12.6
+        - **Browser**: Chrome 
+    value: |
+        - Streamlit version: (get it with `$ streamlit version`)
+        - Python version: (get it with `$ python --version`)
+        - Virtual environment: (Conda? PipEnv? PyEnv? Pex?)
+        - OS:
+        - Browser:
+    render: markdown
   validations:
     required: false
 - type: textarea
