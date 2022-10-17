@@ -58,7 +58,7 @@ body:
       - "No"
       - "I don't know"
   validations:
-    required: true
+    required: false
 - type: textarea
   attributes:
     label: Debug info
