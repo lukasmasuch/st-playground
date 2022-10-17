@@ -38,6 +38,7 @@ body:
         1. Go to '...'
         2. Click on '....'
         3. Scroll down to '....'
+        4. See error
   validations:
     required: false
 - type: textarea
@@ -49,9 +50,16 @@ body:
 - type: textarea
   attributes:
     label: Current Behavior
+    placeholder: |
+        Error message:
+        
+        ```
+        streamlit.errors.StreamlitAPIException: `set_page_config()` can only be called once per app, and must be called as the first Streamlit command in your script.
+        ...
+        ```
     description:  |
         Explain the buggy behavior you experience when you go through the steps above.
-        If you have error messages, stack traces please provide them here as well.
+        If you have error messages or stack traces please provide them here as well.
         If applicable, add screenshots to help explain your problem. 
   validations:
     required: false
@@ -72,7 +80,7 @@ body:
     description: |
         What operating system is your Streamlit app running on?
         
-        You can add more details in the `Additional Information` section below.
+        _You can add more details in the `Additional Information` section below._
     multiple: true
     options:
       - Linux
@@ -109,7 +117,7 @@ body:
     description: |
         What browser do you use to access the Streamlit app?
         
-        You can add more details in the `Additional Information` section below.
+        _You can add more details in the `Additional Information` section below._
     multiple: true
     options:
       - Chrome
@@ -126,7 +134,7 @@ body:
     description: |
         Are you using a virtual environment to run the Streamlit app?
         
-        You can add more details in the `Additional Information` section below.
+        _You can add more details in the `Additional Information` section below._
     multiple: true
     options:
       - Conda
