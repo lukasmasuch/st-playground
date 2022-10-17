@@ -1,18 +1,90 @@
-name: Feature Request
-description: WIP
-labels: [enhancement]
+
+name: 🐛 Bug Report
+description: Submit a bug report to help us improve Streamlit.
+title: ""
+labels: [bug, needs triage]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Hello
-  - type: checkboxes
-    id: checks
-    attributes:
-      label: First Check
-      description: Please confirm and check all the following options.
-      options:
-        - label: Test 1
-          required: true
-        - label: Test 2
-          required: true
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue for this?
+    description: Please search to see if an issue already exists for the bug you encountered.
+    options:
+    - label: I have searched the existing issues
+      required: true
+- type: textarea
+  attributes:
+    label: Summary
+    description: Type here a clear and concise description of the bug. Aim for 2-3 sentences.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Minimal Reproducible Example 
+    description: If applicable, please provide code that we can easily understand and use to reproduce the problem. 
+    placeholder: |
+        import streamlit as st
+  validations:
+    required: false
+    render: python
+- type: textarea
+  attributes:
+    label: Steps To Reproduce
+    description: Please provide the steps we should take to reproduce the bug.
+    placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: Explain what you expect to happen when you go through the steps above, assuming there were no bugs.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Current Behavior
+    description:  |
+        Explain the buggy behavior you experience when you go through the steps above.
+        If applicable, add screenshots to help explain your problem.
+  validations:
+    required: false
+- type: dropdown
+  attributes:
+    label: Is this a regression?
+    description: That is, did this use to work the way you expected in the past?
+    options:
+      - No
+      - Yes
+  validations:
+    required: true
+- type: Debug info
+  attributes:
+    label: Environment
+    description: |
+      examples:
+        - Streamlit version: 1.13
+        - Python version: 3.9
+        - Virtual environment: Pipenv
+        - OS: MacOs 12.6
+        - Browser: Chrome 
+    value: |
+        - Streamlit version: (get it with `$ streamlit version`)
+        - Python version: (get it with `$ python --version`)
+        - Virtual environment: (Conda? PipEnv? PyEnv? Pex?)
+        - OS:
+        - Browser:
+    render: markdown
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Additional information
+    description: |
+      Links? References? Anything that will give us more context about the issue you are encountering! 
+      For example, did this bug come from https://discuss.streamlit.io or another site? Link the original source here!
+
+      Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+  validations:
+    required: false
