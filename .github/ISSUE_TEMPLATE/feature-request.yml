@@ -54,8 +54,7 @@ body:
         Error message:
         
         ```
-        streamlit.errors.StreamlitAPIException: `set_page_config()` can only be called once per app, and must be called as the first Streamlit command in your script.
-        ...
+        streamlit.errors.StreamlitAPIException ...
         ```
     description:  |
         Explain the buggy behavior you experience when you go through the steps above.
