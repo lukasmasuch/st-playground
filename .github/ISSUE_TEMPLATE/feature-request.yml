@@ -80,7 +80,7 @@ body:
     attributes:
       label: Debug info
       description: |
-        Please share some system information with us. 
+        Please share some system information related to the environment your app is running in.
         
         Example:
           - **Streamlit version**: 1.13.0 _(get it with `$ streamlit version`)_
