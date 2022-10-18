@@ -30,6 +30,7 @@ body:
         If we can copy it, run it, and see it right away, there's a much higher chance we will be able to help you.
       placeholder: |
         import streamlit as st
+        
         st.write("Hello World")
     validations:
       required: false
