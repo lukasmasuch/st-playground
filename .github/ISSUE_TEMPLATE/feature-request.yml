@@ -62,6 +62,8 @@ body:
         Explain the buggy behavior you experience when you go through the steps above.
         If you have error messages or stack traces please provide them here as well.
         If applicable, add screenshots to help explain your problem.
+        
+        _Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in._
     validations:
       required: false
   - type: dropdown
@@ -100,6 +102,7 @@ body:
       description: |
         Links? References? Anything that will give us more context about the issue you are encountering!
         For example, did this bug come from https://discuss.streamlit.io or another site? Link the original source here!
-        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+        
+        _Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in._
     validations:
       required: false
