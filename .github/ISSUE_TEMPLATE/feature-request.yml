@@ -13,7 +13,7 @@ body:
           required: true
         - label: I have searched the [Streamlit documentation](https://docs.streamlit.io/).
           required: true
-        - label: I have provided sufficient information to help reproduce this issue.
+        - label: I have provided sufficient information below to help reproduce this issue.
           required: true
   - type: textarea
     attributes:
