@@ -1,1 +1,1 @@
-https://files.pythonhosted.org/packages/46/22/d83dd1737c02a49363f3669e325bc2fcd066837c9cd85cd99744151fa622/streamlit_nightly-1.17.1.dev20230205-py2.py3-none-any.whl
+https://github.com/LukasMasuch/st-playground/releases/download/streamlit-nightly-0.1/streamlit-1.17.1.dev20230205-py2.py3-none-any.whl
