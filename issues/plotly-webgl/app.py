@@ -2,6 +2,8 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+st.write(st.__version__)
+
 df = pd.DataFrame({"y": list(range(2000)), "dt": pd.date_range("2020-01-01", periods=2000)})
 
 n = st.slider("Select a number", 1, 100, 10)
