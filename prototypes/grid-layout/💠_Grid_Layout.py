@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
-from grid import grid
+from pages.utils.grid import grid
 
 random_df = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 

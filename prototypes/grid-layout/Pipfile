@@ -9,4 +9,4 @@ streamlit = "*"
 [dev-packages]
 
 [scripts]
-app = "streamlit run ./app.py"
+app = "streamlit run ./💠_Grid_Layout.py"

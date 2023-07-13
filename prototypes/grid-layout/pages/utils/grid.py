@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, List, Literal, Optional, Sequence, Union
 
 import streamlit as st
+from streamlit.errors import StreamlitAPIException
 
 if TYPE_CHECKING:
     from streamlit.delta_generator import DeltaGenerator
@@ -44,15 +45,20 @@ class GridDeltaGenerator:
         spec: List[SpecType],
         *,
         gap: Optional[str] = "small",
+        repeat: bool = True,
     ):
         self._parent_dg = parent_dg
         self._container_queue: List["DeltaGenerator"] = []
         self._number_of_rows = 0
         self._spec = spec
         self._gap = gap
+        self._repeat = repeat
 
     def _get_next_cell_container(self) -> "DeltaGenerator":
         if not self._container_queue:
+            if not self._repeat and self._number_of_rows > 0:
+                raise StreamlitAPIException("The row is already filled up.")
+
             # Create a new row using st.columns:
             self._number_of_rows += 1
             spec = self._spec[self._number_of_rows % len(self._spec) - 1]
@@ -93,4 +99,31 @@ div[data-testid="column"] > div > div[data-testid="stVerticalBlock"] > div.eleme
         ],
     )
 
-    return GridDeltaGenerator(parent_dg=container, spec=list(spec), gap=gap)
+    return GridDeltaGenerator(
+        parent_dg=container, spec=list(spec), gap=gap, repeat=True
+    )
+
+
+def row(
+    spec: SpecType,
+    gap: Optional[str] = "small",
+    align_items: Literal["top", "center", "bottom"] = "top",
+) -> GridDeltaGenerator:
+    container = stylable_container(
+        class_name=f"row_{align_items}",
+        css_styles=[
+            """
+div[data-testid="column"] > div {
+   height: 100%;
+}
+""",
+            f"""
+div[data-testid="column"] > div > div[data-testid="stVerticalBlock"] > div.element-container {{
+    {"margin-top: auto;" if align_items in ["center", "bottom"] else ""}
+    {"margin-bottom: auto;" if align_items == "center" else ""}
+}}
+""",
+        ],
+    )
+
+    return GridDeltaGenerator(parent_dg=container, spec=[spec], gap=gap, repeat=False)
