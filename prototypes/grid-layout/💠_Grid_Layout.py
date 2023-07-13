@@ -8,6 +8,9 @@ random_df = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 
 st.title("💠 Grid Layout Prototype")
 
+with st.expander("Show Docstring"):
+    st.help(grid)
+
 with st.expander("Show Code"):
     st.code(
         """

@@ -82,6 +82,47 @@ def grid(
     gap: Optional[str] = "small",
     align_items: Literal["top", "center", "bottom"] = "top",
 ) -> GridDeltaGenerator:
+    """Insert a multi-element, grid container.
+
+    Inserts a container into your app that can be used to hold
+    multiple elements. The elements are arranged in a grid layout
+    as defined by the provided spec.
+
+    To add elements to the returned container, you can use "with" notation
+    (preferred) or just call methods directly on the returned object. See
+    examples below.
+
+    Parameters
+    ----------
+    *spec : int or iterable of numbers
+        One or many row specs which control the number and width of cells in each row.
+        Each spec can be one of:
+
+        * An integer that specifies the number of cells. All cells have equal
+          width in this case.
+        * An iterable of numbers (int or float) that specify the relative width of
+          each cell. E.g. ``[0.7, 0.3]`` creates two cells where the first
+          one takes up 70% of the available with and the second one takes up 30%.
+          Or ``[1, 2, 3]`` creates three cells where the second one is two times
+          the width of the first one, and the third one is three times that width.
+
+        It will iterate over the provided specs in a round-robin order. Whenever a row
+        is filled up, it will move on to the next spec or the first spec if there are no
+        more specs.
+
+    gap : "small", "medium", or "large"
+        The size of the gap between the cells. Defaults to "small". This
+        argument can only be supplied by keyword.
+
+    align_items : "top", "center", or "bottom"
+        The vertical alignment of the cells in the row. Defaults to "top".
+
+    Returns
+    -------
+    grid container
+        The grid container that can be used to add elements to the grid.
+
+    """
     container = stylable_container(
         class_name=f"grid_{align_items}",
         css_styles=[
@@ -109,6 +150,41 @@ def row(
     gap: Optional[str] = "small",
     align_items: Literal["top", "center", "bottom"] = "top",
 ) -> GridDeltaGenerator:
+    """Insert a multi-element, horizontal container.
+
+    Inserts a container into your app that can be used to hold
+    as many elements as defined in the provided spec.
+
+    To add elements to the returned container, you can use "with" notation
+    (preferred) or just call methods directly on the returned object. See
+    examples below.
+
+    Parameters
+    ----------
+    spec : int or iterable of numbers
+        Controls the number and width of cells to insert in the row. Can be one of:
+
+        * An integer that specifies the number of cells. All cells have equal
+          width in this case.
+        * An iterable of numbers (int or float) that specify the relative width of
+          each cell. E.g. ``[0.7, 0.3]`` creates two cells where the first
+          one takes up 70% of the available with and the second one takes up 30%.
+          Or ``[1, 2, 3]`` creates three cells where the second one is two times
+          the width of the first one, and the third one is three times that width.
+
+    gap : "small", "medium", or "large"
+        The size of the gap between the cells. Defaults to "small". This
+        argument can only be supplied by keyword.
+
+    align_items : "top", "center", or "bottom"
+        The vertical alignment of the cells in the row. Defaults to "top".
+
+    Returns
+    -------
+    row container
+        The row container that can be used to add elements to the row.
+
+    """
     container = stylable_container(
         class_name=f"row_{align_items}",
         css_styles=[
