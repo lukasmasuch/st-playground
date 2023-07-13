@@ -14,11 +14,11 @@ with st.expander("Show Docstring"):
 with st.expander("Show Code"):
     st.code(
         """
-row1 = st.row(2, align_items="center")
+row1 = st.row(2, vertical_align="center")
 row1.dataframe(random_df, use_container_width=True)
 row1.line_chart(random_df, use_container_width=True)
 
-row2 = st.row([2, 4, 1], align_items="bottom")
+row2 = st.row([2, 4, 1], vertical_align="bottom")
 
 row2.selectbox("Select Country", ["Germany", "Italy", "Japan", "USA"])
 row2.text_input("Your name")
@@ -26,11 +26,11 @@ row2.button("Send", use_container_width=True)
 """
     )
 
-row1 = row(2, align_items="center")
+row1 = row(2, vertical_align="center")
 row1.dataframe(random_df, use_container_width=True)
 row1.line_chart(random_df, use_container_width=True)
 
-row2 = row([2, 4, 1], align_items="bottom")
+row2 = row([2, 4, 1], vertical_align="bottom")
 
 row2.selectbox("Select Country", ["Germany", "Italy", "Japan", "USA"])
 row2.text_input("Your name")

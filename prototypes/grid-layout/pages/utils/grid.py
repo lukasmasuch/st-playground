@@ -80,7 +80,7 @@ class GridDeltaGenerator:
 def grid(
     *spec: SpecType,
     gap: Optional[str] = "small",
-    align_items: Literal["top", "center", "bottom"] = "top",
+    vertical_align: Literal["top", "center", "bottom"] = "top",
 ) -> GridDeltaGenerator:
     """Insert a multi-element, grid container.
 
@@ -114,7 +114,7 @@ def grid(
         The size of the gap between the cells. Defaults to "small". This
         argument can only be supplied by keyword.
 
-    align_items : "top", "center", or "bottom"
+    vertical_align : "top", "center", or "bottom"
         The vertical alignment of the cells in the row. Defaults to "top".
 
     Returns
@@ -124,7 +124,7 @@ def grid(
 
     """
     container = stylable_container(
-        class_name=f"grid_{align_items}",
+        class_name=f"grid_{vertical_align}",
         css_styles=[
             """
 div[data-testid="column"] > div {
@@ -133,8 +133,8 @@ div[data-testid="column"] > div {
 """,
             f"""
 div[data-testid="column"] > div > div[data-testid="stVerticalBlock"] > div.element-container {{
-    {"margin-top: auto;" if align_items in ["center", "bottom"] else ""}
-    {"margin-bottom: auto;" if align_items == "center" else ""}
+    {"margin-top: auto;" if vertical_align in ["center", "bottom"] else ""}
+    {"margin-bottom: auto;" if vertical_align == "center" else ""}
 }}
 """,
         ],
@@ -148,7 +148,7 @@ div[data-testid="column"] > div > div[data-testid="stVerticalBlock"] > div.eleme
 def row(
     spec: SpecType,
     gap: Optional[str] = "small",
-    align_items: Literal["top", "center", "bottom"] = "top",
+    vertical_align: Literal["top", "center", "bottom"] = "top",
 ) -> GridDeltaGenerator:
     """Insert a multi-element, horizontal container.
 
@@ -176,7 +176,7 @@ def row(
         The size of the gap between the cells. Defaults to "small". This
         argument can only be supplied by keyword.
 
-    align_items : "top", "center", or "bottom"
+    vertical_align : "top", "center", or "bottom"
         The vertical alignment of the cells in the row. Defaults to "top".
 
     Returns
@@ -186,7 +186,7 @@ def row(
 
     """
     container = stylable_container(
-        class_name=f"row_{align_items}",
+        class_name=f"row_{vertical_align}",
         css_styles=[
             """
 div[data-testid="column"] > div {
@@ -195,8 +195,8 @@ div[data-testid="column"] > div {
 """,
             f"""
 div[data-testid="column"] > div > div[data-testid="stVerticalBlock"] > div.element-container {{
-    {"margin-top: auto;" if align_items in ["center", "bottom"] else ""}
-    {"margin-bottom: auto;" if align_items == "center" else ""}
+    {"margin-top: auto;" if vertical_align in ["center", "bottom"] else ""}
+    {"margin-bottom: auto;" if vertical_align == "center" else ""}
 }}
 """,
         ],

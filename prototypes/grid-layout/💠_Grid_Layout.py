@@ -14,7 +14,7 @@ with st.expander("Show Docstring"):
 with st.expander("Show Code"):
     st.code(
         """
-my_grid = st.grid(2, [2, 4, 1], 1, 4, align_items="bottom")
+my_grid = st.grid(2, [2, 4, 1], 1, 4, vertical_align="bottom")
 
 # Row 1:
 my_grid.dataframe(random_df, use_container_width=True)
@@ -39,7 +39,7 @@ my_grid.dataframe(random_df, use_container_width=True)
 
 """
     )
-my_grid = grid(2, [2, 4, 1], 1, 4, align_items="bottom")
+my_grid = grid(2, [2, 4, 1], 1, 4, vertical_align="bottom")
 
 # Row 1:
 my_grid.dataframe(random_df, use_container_width=True)
