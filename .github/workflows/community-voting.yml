@@ -35,7 +35,8 @@ jobs:
     #         reactions: '+1'
       - name: Add reaction
         uses: actions-cool/issues-helper@v3
-        actions: 'update-issue'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        issue-number: ${{ github.event.issue.number }}
-        emoji: '+1'
+        with:
+            actions: 'update-issue'
+            token: ${{ secrets.GITHUB_TOKEN }}
+            issue-number: ${{ github.event.issue.number }}
+            emoji: '+1'
