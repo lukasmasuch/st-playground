@@ -8,7 +8,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Add comment
+name: Community voting
 on:
   issues:
     types:
@@ -20,29 +20,16 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: Add reaction
-        uses: actions-cool/issues-helper@v3
-        with:
-            actions: 'update-issue'
-            issue-number: ${{ github.event.issue.number }}
-            emoji: '+1'
-      - name: Add reactions 3
-        uses: aidan-mundy/react-to-issue@v1.1.1
-        with:
-            issue-number: ${{ github.event.issue.number }}
-            reactions: '+1'
-      - name: Add comment
+      - name: Add comment to issue
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
             **If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**
 
-            Community voting on feature requests enables the Streamlit team to understand which features are most important to our users.
-          reactions: '+1'
-
-    #   - name: Add reaction
-    #     uses: peter-evans/create-or-update-comment@v3
-    #     with:
-    #         issue-number: ${{ github.event.issue.number }}
-    #         reactions: '+1'
+            Community voting enables the Streamlit team to understand which features are most important to our users.
+      - name: Add reactions to issue
+        uses: aidan-mundy/react-to-issue@v1.1.1
+        with:
+            issue-number: ${{ github.event.issue.number }}
+            reactions: '+1'
