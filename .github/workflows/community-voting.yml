@@ -20,6 +20,12 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Add reaction
+        uses: actions-cool/issues-helper@v3
+        with:
+            actions: 'update-issue'
+            issue-number: ${{ github.event.issue.number }}
+            emoji: '+1'
       - name: Add comment
         uses: peter-evans/create-or-update-comment@v3
         with:
@@ -34,10 +40,3 @@ jobs:
     #     with:
     #         issue-number: ${{ github.event.issue.number }}
     #         reactions: '+1'
-      - name: Add reaction
-        uses: actions-cool/issues-helper@v3
-        with:
-            actions: 'update-issue'
-            token: ${{ secrets.GITHUB_TOKEN }}
-            issue-number: ${{ github.event.issue.number }}
-            emoji: '+1'
