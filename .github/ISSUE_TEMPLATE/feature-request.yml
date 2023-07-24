@@ -14,7 +14,7 @@ body:
       options:
         - label: I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.
           required: true
-        - label: I added a descriptive title to this issue.
+        - label: I added a descriptive title and summary to this issue.
           required: true
   - type: textarea
     attributes:
@@ -33,7 +33,7 @@ body:
   - type: textarea
     attributes:
       label: Solution
-      description: Is your feature request related to a problem? Please describe the problem here. Ex. I'm always frustrated when [...]
+      description: Please describe the solution you'd like to see. This might include suggestions for `st` commands, new parameters, or UI mockups.
       placeholder: |
         **MVP:** What's the smallest possible solution that would get 80% of the problem out of the way?
 
