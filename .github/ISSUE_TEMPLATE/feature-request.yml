@@ -37,8 +37,6 @@ body:
       placeholder: |
         **MVP:** What's the smallest possible solution that would get 80% of the problem out of the way?
 
-        **Possible additions:** What are other things that could be added to the MVP over time to make it better?
-
         **Preferred solution:** If you don't like the MVP above, tell us why, and what you'd like done instead.
     validations:
       required: false
