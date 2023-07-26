@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = ">=1.24.1"
+streamlit-ace = "*"
+streamlit_code_editor = "*"
+openai = "*"
+tiktoken = "*"
+
+[dev-packages]
+
+[scripts]
+app = "streamlit run ./app.py"
