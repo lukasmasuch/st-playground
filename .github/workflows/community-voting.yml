@@ -1,12 +1,5 @@
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
+# This workflow automatically comments on issue labeled with 'type:enhancement'
+# and adds a thumbs up reaction to the issue to encourage community voting.
 
 name: Community voting
 on:
@@ -14,22 +7,45 @@ on:
     types:
       - labeled
 jobs:
-  add-comment:
+  add-enhancement-comment:
     if: github.event.label.name == 'type:enhancement'
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
       - name: Add comment to issue
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v3.0.2
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            **If you'd like the Streamlit team to prioritize this feature request, please use the 👍 (thumbs up emoji) reaction in response to the initial post.**
+            **To help Streamlit prioritize this feature, react with a 👍 (thumbs up emoji) to the initial post.**
 
-            Community voting enables the Streamlit team to understand which features are most important to our users.
-      - name: Add reactions to issue
+            Your vote helps us identify which enhancements matter most to our users.
+            
+            ![Visits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fstreamlit%2Fstreamlit%2Fissues%2F${{ github.event.issue.number }}&title=visits&edge_flat=false)
+      - name: Upvote issue
         uses: aidan-mundy/react-to-issue@v1.1.1
         with:
-            issue-number: ${{ github.event.issue.number }}
-            reactions: '+1'
+          issue-number: ${{ github.event.issue.number }}
+          reactions: "+1"
+  add-bug-comment:
+    if: github.event.label.name == 'type:bug'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add comment to issue
+        uses: peter-evans/create-or-update-comment@v3.0.2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            **If this issue affects you, please react with a 👍 (thumbs up emoji) to the initial post.** 
+            
+            Your feedback helps us prioritize which bugs to investigate and address first.
+            
+            ![Visits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fstreamlit%2Fstreamlit%2Fissues%2F${{ github.event.issue.number }}&title=visits&edge_flat=false)
+      - name: Upvote issue
+        uses: aidan-mundy/react-to-issue@v1.1.1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          reactions: "+1"
