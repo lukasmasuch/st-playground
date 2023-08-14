@@ -16,7 +16,6 @@ jobs:
       - name: Add comment via CLI
         run: gh issue comment ${{ github.event.issue.html_url }} --body "$ISSUE_BODY"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_BODY: |
             **To help Streamlit prioritize this feature, react with a 👍 (thumbs up emoji) to the initial post.**
 
