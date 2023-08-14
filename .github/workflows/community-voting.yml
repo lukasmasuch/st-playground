@@ -14,9 +14,15 @@ jobs:
       issues: write
     steps:
       - name: Add comment via CLI
-        run: gh issue comment ${{ github.event.issue.html_url }} --body "**To help Streamlit prioritize this feature, react with a 👍 (thumbs up emoji) to the initial post.**\n\nYour vote helps us identify which enhancements matter most to our users.\n\n![Visits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fstreamlit%2Fstreamlit%2Fissues%2F${{ github.event.issue.number }}&title=visits&edge_flat=false)"
+        run: gh issue comment ${{ github.event.issue.html_url }} --body "$ISSUE_BODY"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_BODY: |
+            **To help Streamlit prioritize this feature, react with a 👍 (thumbs up emoji) to the initial post.**
+
+            Your vote helps us identify which enhancements matter most to our users.
+            
+            ![Visits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fstreamlit%2Fstreamlit%2Fissues%2F${{ github.event.issue.number }}&title=visits&edge_flat=false)
       - name: Add comment to issue
         uses: peter-evans/create-or-update-comment@v3.0.2
         with:
