@@ -1,9 +1,9 @@
 import re
 from typing import List
 
-import openai
 import streamlit as st
 import tiktoken
+from openai import OpenAI
 
 
 def extract_first_code_block(markdown_text: str) -> str:
@@ -148,7 +148,7 @@ def test_data_frame_with_different_sizes(app: Page):
         {"width": "704px", "height": "400px"},
     ]
 
-    dataframe_elements = app.locator(".stDataFrame")
+    dataframe_elements = app.get_by_test_id("stDataFrame")
     expect(dataframe_elements).to_have_count(12)
 
     for i, element in enumerate(dataframe_elements.all()):
@@ -252,18 +252,25 @@ Converted Playwright e2e test (pytest):
 ```python
 from playwright.sync_api import Page, expect
 
-from conftest import ImageCompareFunction
+from e2e_playwright.conftest import ImageCompareFunction
 
 
-def test_dataframe_column_types(
+def test_dataframe_column_types_rendering(
     themed_app: Page, assert_snapshot: ImageCompareFunction
 ):
-    \"\"\"Test that st.dataframe render various column types correctly.\"\"\"
-    dataframe_elements = themed_app.locator(".stDataFrame")
-    expect(dataframe_elements).to_have_count(9)
+    \"\"\"Test that st.dataframe renders various column types correctly via screenshot matching\"\"\"
+    elements = themed_app.get_by_test_id("stDataFrame")
+    expect(elements).to_have_count(8)
 
-    for i, element in enumerate(dataframe_elements.all()):
-        assert_snapshot(element, name=f"dataframe-column-types-{i}")
+    assert_snapshot(elements.nth(0), name="st_dataframe-base_types")
+    assert_snapshot(elements.nth(1), name="st_dataframe-numerical_types")
+    assert_snapshot(elements.nth(2), name="st_dataframe-datetime_types")
+    assert_snapshot(elements.nth(3), name="st_dataframe-list_types")
+    assert_snapshot(elements.nth(4), name="st_dataframe-interval_types")
+    assert_snapshot(elements.nth(5), name="st_dataframe-special_types")
+    assert_snapshot(elements.nth(6), name="st_dataframe-period_types")
+    assert_snapshot(elements.nth(7), name="st_dataframe-unsupported_types")
+
 ```
 
 """
@@ -299,6 +306,7 @@ def get_modified_code(
         streamlit_e2e_script: str,
         pytest_playwright_code: str,    
         instruction: str,
+        openai_key: str,
         openai_model: str = "gpt-3.5-turbo",
         show_system_messages: bool = False
 ) -> str:
@@ -353,7 +361,10 @@ Please put the full modified code in a markdown code block (```) and ONLY respon
     ]
 
     print("Prompt tokens", num_tokens_from_messages(messages))
-    completion = openai.ChatCompletion.create(model=openai_model, messages=messages)
+    openai_client = OpenAI(
+        api_key=openai_key
+    )
+    completion = openai_client.chat.completions.create(model=openai_model, messages=messages)
     response = completion.choices[0].message.content.strip()
 
     if show_system_messages:
@@ -377,6 +388,7 @@ Please put the full modified code in a markdown code block (```) and ONLY respon
 def get_converted_code(
     cypress_e2e_spec: str,
     streamlit_e2e_script: str,
+    openai_key: str,
     openai_model: str = "gpt-3.5-turbo",
     show_system_messages: bool = False,
 ) -> str:
@@ -427,7 +439,11 @@ Please put the full code in a markdown code block (```) and ONLY respond with th
     ]
 
     print("Prompt tokens", num_tokens_from_messages(messages))
-    completion = openai.ChatCompletion.create(model=openai_model, messages=messages)
+    
+    openai_client = OpenAI(
+        api_key=openai_key
+    )
+    completion = openai_client.chat.completions.create(model=openai_model, messages=messages)
     response = completion.choices[0].message.content.strip()
 
     if show_system_messages:

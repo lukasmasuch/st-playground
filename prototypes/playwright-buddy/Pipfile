@@ -7,7 +7,7 @@ name = "pypi"
 streamlit = ">=1.24.1"
 streamlit-ace = "*"
 streamlit_code_editor = "*"
-openai = "*"
+openai = ">=1"
 tiktoken = "*"
 
 [dev-packages]

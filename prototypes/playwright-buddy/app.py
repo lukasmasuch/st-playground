@@ -1,13 +1,11 @@
 import os
-import re
-import time
 from dataclasses import dataclass, field
-from typing import Any, List, Optional
+from typing import List, Optional
 
-import openai
 import prompts
 import streamlit as st
 from code_editor import code_editor
+from openai import OpenAI
 
 
 def page_setup() -> None:
@@ -16,14 +14,14 @@ def page_setup() -> None:
     st.set_page_config(
         page_title="Playwright Buddy",
         page_icon="🎭",
-        initial_sidebar_state="collapsed" if openai.api_key else "expanded",
+        initial_sidebar_state="collapsed" if "openai_key" not in st.session_state else "expanded",
     )
 
     PASSCODE = os.environ.get("PASSCODE")
     OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
     if OPENAI_API_KEY:
-        openai.api_key = OPENAI_API_KEY
+        st.session_state["openai_key"] = OPENAI_API_KEY
 
     if PASSCODE and "authenticate" not in st.session_state:
         if st.text_input("What is the passcode?", type="password") == PASSCODE:
@@ -35,11 +33,11 @@ def page_setup() -> None:
     with st.sidebar:
         st.session_state["openai_model"] = st.selectbox(
             "OpenAI Chat Model",
-            options=["gpt-4", "gpt-3.5-turbo", "gpt-3.5-turbo-16k"],
+            options=["gpt-4-1106-preview", "gpt-4", "gpt-3.5-turbo", "gpt-3.5-turbo-16k"],
             help="Make sure that the provided API key is activated for the selected model.",
         )
         if not OPENAI_API_KEY:
-            openai.api_key = st.text_input(
+            st.session_state["openai_key"] = st.text_input(
                 "OpenAI API Key",
                 type="password",
                 help="You can find your API keys [here](https://platform.openai.com/account/api-keys).",
@@ -65,6 +63,10 @@ class ConversionState:
 if "state" not in st.session_state:
     st.session_state["state"] = ConversionState()
 conversion_state: ConversionState = st.session_state["state"]
+
+openai_client = OpenAI(
+    api_key=st.session_state["openai_key"]
+)
 
 editor_actions = (
     {
@@ -133,7 +135,7 @@ if not conversion_state.history:
     new_request = ConversionRequest()
     with st.chat_message("assistant", avatar="🎭"):
         with st.spinner("♻️ Converting Cypress test..."):
-            new_request.generated_code = prompts.get_converted_code(conversion_state.cypress_test_code, conversion_state.streamlit_e2e_code, openai_model=st.session_state.openai_model, show_system_messages=st.session_state.show_system_messages)
+            new_request.generated_code = prompts.get_converted_code(conversion_state.cypress_test_code, conversion_state.streamlit_e2e_code, openai_key=st.session_state["openai_key"], openai_model=st.session_state.openai_model, show_system_messages=st.session_state.show_system_messages)
         
         if new_request.generated_code:
             st.write("Here is the generated Playwright code:")
@@ -151,7 +153,7 @@ if latest_request.generated_code:
         new_request.instruction = prompt
         with st.chat_message("assistant", avatar="🎭"):
             with st.spinner("♻️ Modifying Playwright code..."):
-                new_request.generated_code = prompts.get_modified_code(conversion_state.streamlit_e2e_code, latest_request.generated_code, instruction=prompt, openai_model=st.session_state.openai_model, show_system_messages=st.session_state.show_system_messages)
+                new_request.generated_code = prompts.get_modified_code(conversion_state.streamlit_e2e_code, latest_request.generated_code, instruction=prompt, openai_key=st.session_state["openai_key"], openai_model=st.session_state.openai_model, show_system_messages=st.session_state.show_system_messages)
             if new_request.generated_code:
                 st.write("Here is the generated Playwright code:")
                 st.code(new_request.generated_code, language="python")
