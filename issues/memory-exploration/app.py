@@ -3,6 +3,7 @@
 
 import gc
 import resource
+import time
 
 import objgraph
 import psutil
@@ -57,3 +58,7 @@ st.dataframe(objgraph.most_common_types(100))
 if st.button("Show stats"):
     gc.collect()
     st.dataframe(objgraph.growth())
+
+if st.toggle("Auto-rerun", value=False):
+    time.sleep(0.5)
+    st.rerun()
