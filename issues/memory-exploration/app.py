@@ -44,7 +44,14 @@ from guppy import hpy
 # st.write(objgraph.count("builtin_function_or_method", objgraph.get_leaking_objects()))
 # st.write(objgraph.get_new_ids())
 
+
 if st.toggle("Auto-rerun", value=False):
+    my_bar = st.progress(0, text="Progress...")
+
+    for percent_complete in range(100):
+        time.sleep(0.01)
+        my_bar.progress(percent_complete + 1, text="Progress...")
+    my_bar.empty()
     time.sleep(0.5)
     st.rerun()
 
