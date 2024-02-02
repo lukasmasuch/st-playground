@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-streamlit = "*"
+streamlit = {file = "https://core-previews.s3-us-west-2.amazonaws.com/pr-8068/streamlit-1.31.0-py2.py3-none-any.whl"}
 objgraph = "*"
 guppy3 = "*"
 psutil = "*"
