@@ -2,6 +2,7 @@
 # import pandas as pd
 
 import gc
+import random
 import resource
 import time
 
@@ -43,22 +44,41 @@ from guppy import hpy
 # st.write(objgraph.count("builtin_function_or_method", objgraph.get_leaking_objects()))
 # st.write(objgraph.get_new_ids())
 
-
-gc.collect()
-
-st.text(hpy().heap())
-
-process = psutil.Process()
-st.write("RSS memory (bytes):", process.memory_info().rss)
-st.write("Max RSS memory (bytes):", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
-
-gc.collect()
-st.dataframe(objgraph.most_common_types(100))
-
-if st.button("Show stats"):
-    gc.collect()
-    st.dataframe(objgraph.growth())
-
 if st.toggle("Auto-rerun", value=False):
     time.sleep(0.5)
     st.rerun()
+
+if st.button("Show memory stats"):
+    gc.collect()
+    heap = hpy().heap()
+    st.text(heap)
+
+    process = psutil.Process()
+    st.write("RSS memory (bytes):", process.memory_info().rss)
+    st.write("Max RSS memory (bytes):", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+
+    gc.collect()
+    st.dataframe(objgraph.most_common_types(100))
+    st.write("heap.bytype")
+    st.text(heap.bytype)
+    st.write("heap.byclodo")
+    st.text(heap.byclodo)
+
+if st.button("Show growth"):
+    gc.collect()
+    st.dataframe(objgraph.growth())
+
+obj_type = st.text_input("Object type", value=None)
+if st.button("Explore type"):
+    st.write("Leaking obj from type", objgraph.count(obj_type, objgraph.get_leaking_objects()))
+    st.write("Backref chain")
+    st.write(objgraph.find_backref_chain(
+        random.choice(objgraph.by_type(obj_type)), 
+        objgraph.is_proper_module))
+   
+
+object_rank = st.number_input("The n-largest object", min_value=0, value=0)
+if st.button("Show n-largest object path"):
+    heap = hpy().heap()
+    obj = heap.byid[object_rank]
+    st.write(f"Object {object_rank}: ", "Path:", obj.sp, "Info:", obj.stat)
