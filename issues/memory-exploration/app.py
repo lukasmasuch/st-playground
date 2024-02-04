@@ -71,7 +71,7 @@ if st.toggle("Auto-rerun", value=False):
     my_bar.empty()
     st.dataframe(get_data_1(st.session_state.counter))
     st.dataframe(get_data_2(st.session_state.counter))
-    time.sleep(0.5)
+    time.sleep(2)
     st.session_state.counter += 1
     st.rerun()
 
