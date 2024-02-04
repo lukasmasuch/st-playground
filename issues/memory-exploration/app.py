@@ -6,11 +6,14 @@ import random
 import resource
 import time
 
+import numpy as np
 import objgraph
+import pandas as pd
 import psutil
 import streamlit as st
 from guppy import hpy
 
+np.random.seed(0)
 # import resource
 
 # st.write(resource.getrlimit(resource.RLIMIT_AS))
@@ -44,6 +47,20 @@ from guppy import hpy
 # st.write(objgraph.count("builtin_function_or_method", objgraph.get_leaking_objects()))
 # st.write(objgraph.get_new_ids())
 
+if "counter" not in st.session_state:  
+    st.session_state.counter = 0
+
+@st.cache_data()
+def get_data_1():
+    return pd.DataFrame(
+        np.random.randn(100000, 20), columns=("col %d" % i for i in range(20))
+    )
+
+@st.cache_resource()
+def get_data_2():
+    return pd.DataFrame(
+        np.random.randn(100000, 20), columns=("col %d" % i for i in range(20))
+    )
 
 if st.toggle("Auto-rerun", value=False):
     my_bar = st.progress(0, text="Progress...")
@@ -52,18 +69,19 @@ if st.toggle("Auto-rerun", value=False):
         time.sleep(0.01)
         my_bar.progress(percent_complete + 1, text="Progress...")
     my_bar.empty()
+    st.dataframe(get_data_1())
+    st.dataframe(get_data_2())
     time.sleep(0.5)
+    st.session_state.counter += 1
     st.rerun()
 
 if st.button("Show memory stats"):
     gc.collect()
     heap = hpy().heap()
     st.text(heap)
-
     process = psutil.Process()
     st.write("RSS memory (bytes):", process.memory_info().rss)
     st.write("Max RSS memory (bytes):", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
-
     gc.collect()
     st.dataframe(objgraph.most_common_types(100))
     st.write("heap.bytype")
@@ -89,3 +107,5 @@ if st.button("Show n-largest object path"):
     heap = hpy().heap()
     obj = heap.byid[object_rank]
     st.write(f"Object {object_rank}: ", "Path:", obj.sp, "Info:", obj.stat)
+
+st.write("Counter:", st.session_state.counter)
