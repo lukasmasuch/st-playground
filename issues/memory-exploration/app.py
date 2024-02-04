@@ -122,4 +122,4 @@ if st.button("Show n-largest object path"):
 
 if st.button("Show config"):
     from streamlit.config import get_config_options
-    st.json(st.get_config_options())
+    st.json(get_config_options())
