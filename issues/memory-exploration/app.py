@@ -1,6 +1,3 @@
-# import numpy as np
-# import pandas as pd
-
 import gc
 import random
 import resource
@@ -9,9 +6,7 @@ import time
 import numpy as np
 import objgraph
 import pandas as pd
-import psutil
 import streamlit as st
-from guppy import hpy
 
 np.random.seed(0)
 # import resource
@@ -66,28 +61,33 @@ if st.toggle("Auto-rerun", value=False):
     my_bar = st.progress(0, text="Progress...")
 
     for percent_complete in range(100):
-        time.sleep(0.01)
+        time.sleep(0.02)
         my_bar.progress(percent_complete + 1, text="Progress...")
     my_bar.empty()
     st.dataframe(get_data_1(st.session_state.counter))
     st.dataframe(get_data_2(st.session_state.counter))
+    st.write("Counter:", st.session_state.counter)
     time.sleep(2)
     st.session_state.counter += 1
     st.rerun()
 
-if st.button("Show memory stats"):
+if st.button("Show heap"):
+    import psutil
+    from guppy import hpy
     gc.collect()
     heap = hpy().heap()
     st.text(heap)
     process = psutil.Process()
     st.write("RSS memory (bytes):", process.memory_info().rss)
     st.write("Max RSS memory (bytes):", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+    # st.write("heap.bytype")
+    # st.text(heap.bytype)
+    # st.write("heap.byclodo")
+    # st.text(heap.byclodo)
+
+if st.button("Show most common types"):
     gc.collect()
     st.dataframe(objgraph.most_common_types(100))
-    st.write("heap.bytype")
-    st.text(heap.bytype)
-    st.write("heap.byclodo")
-    st.text(heap.byclodo)
 
 if st.button("Show growth"):
     gc.collect()
@@ -104,8 +104,7 @@ if st.button("Explore type"):
 
 object_rank = st.number_input("The n-largest object", min_value=0, value=0)
 if st.button("Show n-largest object path"):
+    from guppy import hpy
     heap = hpy().heap()
     obj = heap.byid[object_rank]
     st.write(f"Object {object_rank}: ", "Path:", obj.sp, "Info:", obj.stat)
-
-st.write("Counter:", st.session_state.counter)
