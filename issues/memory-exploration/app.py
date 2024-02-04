@@ -57,6 +57,17 @@ def get_data_2(counter):
         np.random.randn(50000+counter, 20), columns=("col %d" % i for i in range(20))
     )
 
+if st.button("Release memory"):
+    import gc
+    gc.collect()
+    import pyarrow
+    pool = pyarrow.default_memory_pool()
+    pool.release_unused()
+
+if st.button("Configure jemelloc decay"):
+    import pyarrow as pa
+    pa.jemalloc_set_decay_ms(0)
+
 if st.toggle("Auto-rerun", value=False):
     my_bar = st.progress(0, text="Progress...")
 
@@ -108,3 +119,7 @@ if st.button("Show n-largest object path"):
     heap = hpy().heap()
     obj = heap.byid[object_rank]
     st.write(f"Object {object_rank}: ", "Path:", obj.sp, "Info:", obj.stat)
+
+if st.button("Show config"):
+    from streamlit.config import get_config_options
+    st.json(st.get_config_options())
