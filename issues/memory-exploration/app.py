@@ -122,4 +122,4 @@ if st.button("Show n-largest object path"):
 
 if st.button("Show config"):
     from streamlit.config import get_option
-    st.json(get_option("global.storeCachedForwardMessagesInMemory"))
+    st.write(get_option("global.storeCachedForwardMessagesInMemory"))
