@@ -50,16 +50,16 @@ np.random.seed(0)
 if "counter" not in st.session_state:  
     st.session_state.counter = 0
 
-@st.cache_data()
-def get_data_1():
+@st.cache_data(max_entries=3)
+def get_data_1(counter: int):
     return pd.DataFrame(
-        np.random.randn(100000, 20), columns=("col %d" % i for i in range(20))
+        np.random.randn(50000+counter, 20), columns=("col %d" % i for i in range(20))
     )
 
-@st.cache_resource()
-def get_data_2():
+@st.cache_resource(max_entries=3)
+def get_data_2(counter):
     return pd.DataFrame(
-        np.random.randn(100000, 20), columns=("col %d" % i for i in range(20))
+        np.random.randn(50000+counter, 20), columns=("col %d" % i for i in range(20))
     )
 
 if st.toggle("Auto-rerun", value=False):
@@ -69,8 +69,8 @@ if st.toggle("Auto-rerun", value=False):
         time.sleep(0.01)
         my_bar.progress(percent_complete + 1, text="Progress...")
     my_bar.empty()
-    st.dataframe(get_data_1())
-    st.dataframe(get_data_2())
+    st.dataframe(get_data_1(st.session_state.counter))
+    st.dataframe(get_data_2(st.session_state.counter))
     time.sleep(0.5)
     st.session_state.counter += 1
     st.rerun()
