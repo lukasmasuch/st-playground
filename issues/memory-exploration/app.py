@@ -121,5 +121,5 @@ if st.button("Show n-largest object path"):
     st.write(f"Object {object_rank}: ", "Path:", obj.sp, "Info:", obj.stat)
 
 if st.button("Show config"):
-    from streamlit.config import get_config_options
-    st.json(get_config_options())
+    from streamlit.config import get_option
+    st.json(get_option("global.storeCachedForwardMessagesInMemory"))
