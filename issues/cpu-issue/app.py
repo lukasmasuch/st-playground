@@ -3,6 +3,8 @@ import time
 
 import streamlit as st
 
+st.write(st.__version__)
+
 
 @st.cache_data
 def cache_something(num):
