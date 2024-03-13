@@ -6,6 +6,7 @@ import time
 import numpy as np
 import objgraph
 import pandas as pd
+import psutil
 import streamlit as st
 
 np.random.seed(0)
@@ -37,6 +38,9 @@ def get_data_2(counter):
         np.random.randn(50000 + counter, 20), columns=("col %d" % i for i in range(20))
     )
 
+
+cpu_percent = psutil.cpu_percent(interval=1)
+st.write("CPU percantage", cpu_percent)
 
 if st.button("Release memory"):
     import gc

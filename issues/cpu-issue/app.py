@@ -6,6 +6,7 @@ import time
 import numpy as np
 import objgraph
 import pandas as pd
+import psutil
 import streamlit as st
 
 np.random.seed(0)
@@ -22,6 +23,9 @@ def cache_something(num):
 
 if "counter" not in st.session_state:
     st.session_state.counter = 0
+
+cpu_percent = psutil.cpu_percent(interval=1)
+st.write("CPU percantage", cpu_percent)
 
 
 @st.cache_data(max_entries=3)
