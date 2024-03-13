@@ -110,8 +110,11 @@ if st.button("Show config"):
     st.write(get_option("global.storeCachedForwardMessagesInMemory"))
 
 if st.button("Print yappi"):
+    print("Yappi get_func_stats", flush=True)
     yappi.get_func_stats().print_all()
+    print("Yappi get_thread_stats", flush=True)
     yappi.get_thread_stats().print_all()
+    print("", flush=True)
 
 if st.button("Show CPU stats"):
     import psutil
