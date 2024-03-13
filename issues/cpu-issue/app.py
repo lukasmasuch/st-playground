@@ -7,11 +7,15 @@ import numpy as np
 import objgraph
 import pandas as pd
 import streamlit as st
+import yappi
 
 np.random.seed(0)
 
 st.write(st.__version__)
 st.write("hello")
+
+yappi.set_clock_type("cpu")
+yappi.start()
 
 
 @st.cache_data
@@ -68,8 +72,6 @@ if st.button("Show heap"):
     # st.text(heap.bytype)
     # st.write("heap.byclodo")
     # st.text(heap.byclodo)
-    cpu_percent = psutil.cpu_percent(interval=1)
-    st.write("CPU percantage", cpu_percent)
 
 
 if st.button("Show most common types"):
@@ -106,6 +108,25 @@ if st.button("Show config"):
     from streamlit.config import get_option
 
     st.write(get_option("global.storeCachedForwardMessagesInMemory"))
+
+if st.button("Print yappi"):
+    yappi.get_func_stats().print_all()
+    yappi.get_thread_stats().print_all()
+
+if st.button("Show CPU stats"):
+    import psutil
+
+    cpu_percent = psutil.cpu_percent(interval=1)
+    st.write("CPU%", cpu_percent)
+
+    for process in [psutil.Process(pid) for pid in psutil.pids()]:
+        try:
+            process_name = process.name()
+            process_mem = process.memory_percent()
+            process_cpu = process.cpu_percent(interval=0.5)
+            st.write("Name:", process_name, "CPU%:", process_cpu, "MEM%:", process_mem)
+        except:
+            pass
 
 if st.toggle("Auto-rerun", value=False):
     # my_bar = st.progress(0, text="Progress...")
