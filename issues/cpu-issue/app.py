@@ -112,7 +112,16 @@ if st.button("Show config"):
 if st.button("Print yappi"):
     print("Yappi get_func_stats", flush=True)
     yappi.get_func_stats().print_all()
-    print("Yappi get_thread_stats", flush=True)
+    print("Yappi get_thread_stats (per thread)", flush=True)
+    # retrieve thread stats by their thread id (given by yappi)
+    threads = yappi.get_thread_stats()
+    for thread in threads:
+        print(
+            "Function stats for (%s) (%d)" % (thread.name, thread.id)
+        )  # it is the Thread.__class__.__name__
+        yappi.get_func_stats(ctx_id=thread.id).print_all()
+
+    print("Yappi get_thread_stats (overview)", flush=True)
     yappi.get_thread_stats().print_all()
     print("", flush=True)
 
