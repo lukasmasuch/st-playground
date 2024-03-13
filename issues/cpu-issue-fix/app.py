@@ -6,7 +6,6 @@ import time
 import numpy as np
 import objgraph
 import pandas as pd
-import psutil
 import streamlit as st
 
 np.random.seed(0)
@@ -39,9 +38,6 @@ def get_data_2(counter):
     )
 
 
-cpu_percent = psutil.cpu_percent(interval=1)
-st.write("CPU percantage", cpu_percent)
-
 if st.button("Release memory"):
     import gc
 
@@ -69,6 +65,9 @@ if st.button("Show heap"):
     st.write(
         "Max RSS memory (bytes):", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     )
+
+    cpu_percent = psutil.cpu_percent(interval=1)
+    st.write("CPU percantage", cpu_percent)
     # st.write("heap.bytype")
     # st.text(heap.bytype)
     # st.write("heap.byclodo")
@@ -110,14 +109,13 @@ if st.button("Show config"):
     st.write(get_option("global.storeCachedForwardMessagesInMemory"))
 
 if st.toggle("Auto-rerun", value=False):
-    my_bar = st.progress(0, text="Progress...")
-
-    for percent_complete in range(100):
-        time.sleep(0.02)
-        my_bar.progress(percent_complete + 1, text="Progress...")
-    my_bar.empty()
-    st.dataframe(get_data_1(st.session_state.counter))
-    st.dataframe(get_data_2(st.session_state.counter))
+    # my_bar = st.progress(0, text="Progress...")
+    # for percent_complete in range(100):
+    #     time.sleep(0.02)
+    #     my_bar.progress(percent_complete + 1, text="Progress...")
+    # my_bar.empty()
+    # st.dataframe(get_data_1(st.session_state.counter))
+    # st.dataframe(get_data_2(st.session_state.counter))
     st.write("Counter:", st.session_state.counter)
     cache_something(random.randint(0, 10000))
     time.sleep(2)
