@@ -4,6 +4,7 @@ import time
 import streamlit as st
 
 st.write(st.__version__)
+st.write("hello")
 
 
 @st.cache_data
