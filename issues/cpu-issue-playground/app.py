@@ -10,7 +10,7 @@ import pandas as pd
 import streamlit as st
 import yappi
 
-np.random.seed(0)
+# np.random.seed(0)
 
 st.write(st.__version__)
 st.write("hello")
