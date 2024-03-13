@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = "==1.31.1"
+objgraph = "*"
+guppy3 = "*"
+psutil = "*"
+yappi = "*"
+
+[dev-packages]
+
+[scripts]
+app = "streamlit run ./app.py"
