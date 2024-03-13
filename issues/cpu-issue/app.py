@@ -56,21 +56,6 @@ if st.button("Configure jemelloc decay"):
 
     pa.jemalloc_set_decay_ms(0)
 
-if st.toggle("Auto-rerun", value=False):
-    my_bar = st.progress(0, text="Progress...")
-
-    for percent_complete in range(100):
-        time.sleep(0.02)
-        my_bar.progress(percent_complete + 1, text="Progress...")
-    my_bar.empty()
-    st.dataframe(get_data_1(st.session_state.counter))
-    st.dataframe(get_data_2(st.session_state.counter))
-    st.write("Counter:", st.session_state.counter)
-    cache_something(random.randint(0, 10000))
-    time.sleep(2)
-    st.session_state.counter += 1
-    st.rerun()
-
 if st.button("Show heap"):
     import psutil
     from guppy import hpy
@@ -122,3 +107,18 @@ if st.button("Show config"):
     from streamlit.config import get_option
 
     st.write(get_option("global.storeCachedForwardMessagesInMemory"))
+
+if st.toggle("Auto-rerun", value=False):
+    my_bar = st.progress(0, text="Progress...")
+
+    for percent_complete in range(100):
+        time.sleep(0.02)
+        my_bar.progress(percent_complete + 1, text="Progress...")
+    my_bar.empty()
+    st.dataframe(get_data_1(st.session_state.counter))
+    st.dataframe(get_data_2(st.session_state.counter))
+    st.write("Counter:", st.session_state.counter)
+    cache_something(random.randint(0, 10000))
+    time.sleep(2)
+    st.session_state.counter += 1
+    st.rerun()
