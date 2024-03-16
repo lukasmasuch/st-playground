@@ -2,9 +2,6 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-with st.form(key="my_form"):
-    st.text_input("Object type", value=None, key="obj_type")
-
 if st.toggle("Show data"):
     num_rows = st.number_input("Num rows", 0, 500000, 100000, 1000)
     # create a random dataframe
