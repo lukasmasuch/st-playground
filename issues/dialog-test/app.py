@@ -20,7 +20,15 @@ def simple_dialog():
         st.rerun()
 
 
+@st.experimental_dialog("Simple Dialog 2")
+def simple_dialog2():
+    st.text_input("Enter something 2!")
+
+
 if st.button("Open Dialog"):
     simple_dialog()
+
+if st.button("Open Dialog 2"):
+    simple_dialog2()
 
 st.write(st.session_state.get("dialog2-input"))
